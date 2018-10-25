@@ -1,28 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace sdm_movie_rating
 {
-    public interface Isdm_lib
+    public interface ISdmLib
     {
         //1
-        int NumberOfReviewsFromN(int Reviewer);
+        int NumberOfReviewsFromN(int reviewer);
 
         //2
-        double GetAverageRatingForReviewerN(int Reviewer);
+        double GetAverageRatingForReviewerN(int reviewer);
 
         //3
-        int GetNumberOfGradeGForReviewerN(int Reviewer, int Grade);
+        int GetNumberOfGradeGForReviewerN(int reviewer, int grade);
 
         //
-        int NumberOfReviewsForMovieN(int Movie);
+        int NumberOfReviewsForMovieN(int movie);
 
         //5
-        double AverageRatingForMovieN(int Movie);
+        double AverageRatingForMovieN(int movie);
 
         //6
-        int NumberOfGradeGForMovieN(int Grade, int Movie);
+        int NumberOfGradeGForMovieN(int grade, int movie);
 
         //7  
         List<int> IdsForMoviesWithTopRates();

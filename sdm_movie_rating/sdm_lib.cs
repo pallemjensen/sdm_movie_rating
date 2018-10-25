@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Newtonsoft.Json;
-using sdm_movie_rating;
 
 namespace sdm_movie_rating 
 {
-    public class sdm_lib : Isdm_lib
+    public class SdmLib : ISdmLib
     {
         public void LoadJson()
         {
@@ -15,38 +14,38 @@ namespace sdm_movie_rating
             {
                string json = r.ReadToEnd();              
 
-               IEnumerable<movie_rating> list = JsonConvert.DeserializeObject<List<movie_rating>>(json);
+               IEnumerable<MovieRating> list = JsonConvert.DeserializeObject<List<MovieRating>>(json);
 
                Console.WriteLine(list.First().Movie);
             }
         }
 
-        public int NumberOfReviewsFromN(int Reviewer)
+        public int NumberOfReviewsFromN(int reviewer)
         {
             throw new NotImplementedException();
         }
 
-        public double GetAverageRatingForReviewerN(int Reviewer)
+        public double GetAverageRatingForReviewerN(int reviewer)
         {
             throw new NotImplementedException();
         }
 
-        public int GetNumberOfGradeGForReviewerN(int Reviewer, int Grade)
+        public int GetNumberOfGradeGForReviewerN(int reviewer, int grade)
         {
             throw new NotImplementedException();
         }
 
-        public int NumberOfReviewsForMovieN(int Movie)
+        public int NumberOfReviewsForMovieN(int movie)
         {
             throw new NotImplementedException();
         }
 
-        public double AverageRatingForMovieN(int Movie)
+        public double AverageRatingForMovieN(int movie)
         {
             throw new NotImplementedException();
         }
 
-        public int NumberOfGradeGForMovieN(int Grade, int Movie)
+        public int NumberOfGradeGForMovieN(int grade, int movie)
         {
             throw new NotImplementedException();
         }
