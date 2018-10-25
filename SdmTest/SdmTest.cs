@@ -43,5 +43,15 @@ namespace SdmTest
 
             Console.WriteLine(averageRating);
         }
+
+        [TestMethod]
+        public void GetNumberOfGradeGForReviewerN_validateNumber()
+        {
+            int numberOfGradeGForReviewerN = sdmLib.GetNumberOfGradeGForReviewerN(10, 5);
+
+            Assert.IsNotNull(numberOfGradeGForReviewerN);
+
+            Console.WriteLine(numberOfGradeGForReviewerN);
+        }
     }
 }
