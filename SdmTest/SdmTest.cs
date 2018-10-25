@@ -33,5 +33,15 @@ namespace SdmTest
 
             Console.WriteLine(numberOfReviews);
         }
+
+        [TestMethod]
+        public void GetAverageRatingForReviewerN_validAverage()
+        {
+            double averageRating = sdmLib.GetAverageRatingForReviewerN(10);
+
+            Assert.IsNotNull(averageRating);
+
+            Console.WriteLine(averageRating);
+        }
     }
 }

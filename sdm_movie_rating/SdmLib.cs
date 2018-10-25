@@ -44,7 +44,27 @@ namespace sdm_movie_rating
 
         public double GetAverageRatingForReviewerN(int reviewer)
         {
-            throw new NotImplementedException();
+            double averageRating = 0;
+
+            //can be int, but resharper is annoyed
+            double cumulativeRating = 0;
+
+            int x = List.Count();
+
+            int y = 0;
+
+            for (int i = 0; i < x; i++)
+            {
+                if (List.ElementAt(i).Reviewer == reviewer)
+                {
+                  y++;
+                  cumulativeRating  = cumulativeRating + List.ElementAt(i).Grade;
+                }
+
+            }
+            averageRating = cumulativeRating / y;
+
+            return averageRating;
         }
 
         public int GetNumberOfGradeGForReviewerN(int reviewer, int grade)
