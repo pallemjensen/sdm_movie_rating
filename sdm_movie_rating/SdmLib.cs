@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using Newtonsoft.Json;
 
 namespace sdm_movie_rating 
 {
     public class SdmLib : ISdmLib
     {
-        public IEnumerable<MovieRating> list;
+        public IEnumerable<MovieRating> List;
 
         public SdmLib(string filepath)
         {
@@ -20,7 +19,7 @@ namespace sdm_movie_rating
             using (StreamReader r = new StreamReader(filepath))
             {
                string json = r.ReadToEnd();
-               list = JsonConvert.DeserializeObject<List<MovieRating>>(json);
+               List = JsonConvert.DeserializeObject<List<MovieRating>>(json);
             }
         }
 
