@@ -6,9 +6,9 @@ namespace sdm_movie_rating
 {
     public class movie_rating
     {
-        public int reviewer { get; set; }
-        public int movie { get; set; }
-        public int grade { get; set; }
-        public DateTime date { get; set; }
+        public int Reviewer { get; set; }
+        public int Movie { get; set; }
+        public int Grade { get; set; }
+        public DateTime Date { get; set; }
     }
 }
