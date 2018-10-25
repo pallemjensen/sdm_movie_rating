@@ -105,7 +105,26 @@ namespace sdm_movie_rating
         //5
         public double AverageRatingForMovieN(int movie)
         {
-            throw new NotImplementedException();
+            double cumulativeMovieRating = 0;
+
+            int x = List.Count();
+
+            int y = 0;
+
+            double averageMovieRating = 0;
+
+            for (int i = 0; i < x; i++)
+            {
+                if (List.ElementAt(i).Movie == movie)
+                {
+                    y++;
+                    cumulativeMovieRating = cumulativeMovieRating + List.ElementAt(i).Grade;
+                }
+            }
+
+            averageMovieRating = cumulativeMovieRating / y;
+
+            return averageMovieRating;
         }
 
         //6

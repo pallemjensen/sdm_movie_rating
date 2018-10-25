@@ -68,5 +68,16 @@ namespace SdmTest
             Console.WriteLine(numberOfReviews);
         }
 
+        //5
+        [TestMethod]
+        public void AverageRatingForMovieN_validNumber()
+        {
+            double averageRatingForMovieN = sdmLib.AverageRatingForMovieN(1567202);
+
+            Assert.IsNotNull(averageRatingForMovieN);
+
+            Console.WriteLine(averageRatingForMovieN);
+        }
+
     }
 }
