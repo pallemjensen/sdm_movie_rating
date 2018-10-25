@@ -5,7 +5,7 @@ namespace sdm_movie_rating
     public interface ISdmLib
     {
         //1
-        int NumberOfReviewsFromN(int reviewer);
+        int NumberOfReviewsFromNReviewer(int reviewer);
 
         //2
         double GetAverageRatingForReviewerN(int reviewer);
@@ -13,7 +13,7 @@ namespace sdm_movie_rating
         //3
         int GetNumberOfGradeGForReviewerN(int reviewer, int grade);
 
-        //
+        //4
         int NumberOfReviewsForMovieN(int movie);
 
         //5

@@ -24,16 +24,18 @@ namespace SdmTest
 
         }
 
+        //1
         [TestMethod]
-        public void NumberOfReviewsFromN_validReviewNumber()
+        public void NumberOfReviewsFromNReviewer_validReviewNumber()
         {
-            int numberOfReviews = sdmLib.NumberOfReviewsFromN(10);
+            int numberOfReviews = sdmLib.NumberOfReviewsFromNReviewer(10);
 
             Assert.IsNotNull(numberOfReviews);
 
             Console.WriteLine(numberOfReviews);
         }
 
+        //2
         [TestMethod]
         public void GetAverageRatingForReviewerN_validAverage()
         {
@@ -44,6 +46,7 @@ namespace SdmTest
             Console.WriteLine(averageRating);
         }
 
+        //3
         [TestMethod]
         public void GetNumberOfGradeGForReviewerN_validateNumber()
         {
@@ -53,5 +56,17 @@ namespace SdmTest
 
             Console.WriteLine(numberOfGradeGForReviewerN);
         }
+
+        //4
+        [TestMethod]
+        public void numberOfReviewsForMovieN()
+        {
+            int numberOfReviews = sdmLib.NumberOfReviewsForMovieN(1567202);
+
+            Assert.IsNotNull(numberOfReviews);
+
+            Console.WriteLine(numberOfReviews);
+        }
+
     }
 }

@@ -26,7 +26,7 @@ namespace sdm_movie_rating
         }
 
         //1
-        public int NumberOfReviewsFromN(int reviewer)
+        public int NumberOfReviewsFromNReviewer(int reviewer)
         {
             int numberOfReviews = 0;
 
@@ -88,7 +88,18 @@ namespace sdm_movie_rating
         //4
         public int NumberOfReviewsForMovieN(int movie)
         {
-            throw new NotImplementedException();
+            int numberOfReviews = 0;
+
+            int x = List.Count();
+
+            for (int i = 0; i < x; i++)
+            {
+                if (List.ElementAt(i).Movie == movie)
+                {
+                    numberOfReviews++;
+                }
+            }
+            return numberOfReviews;
         }
 
         //5
