@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Runtime.CompilerServices;
 using Newtonsoft.Json;
 
 namespace sdm_movie_rating 
@@ -25,7 +27,19 @@ namespace sdm_movie_rating
 
         public int NumberOfReviewsFromN(int reviewer)
         {
-            throw new NotImplementedException();
+            int numberOfReviews = 0;
+
+            int x = List.Count();
+        
+                for (int i = 0; i < x; i++)
+                {
+                    if (List.ElementAt(i).Reviewer == reviewer)
+                    {
+                        numberOfReviews++;
+                    }
+                }
+                         
+            return numberOfReviews;
         }
 
         public double GetAverageRatingForReviewerN(int reviewer)
