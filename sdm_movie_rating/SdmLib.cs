@@ -8,15 +8,19 @@ namespace sdm_movie_rating
 {
     public class SdmLib : ISdmLib
     {
-        public void LoadJson()
+        public IEnumerable<MovieRating> list;
+
+        public SdmLib(string filepath)
         {
-            using (StreamReader r = new StreamReader("ratings.json"))
+            LoadJson(filepath);
+        }
+
+        public void LoadJson(String filepath)
+        {
+            using (StreamReader r = new StreamReader(filepath))
             {
-               string json = r.ReadToEnd();              
-
-               IEnumerable<MovieRating> list = JsonConvert.DeserializeObject<List<MovieRating>>(json);
-
-               Console.WriteLine(list.First().Movie);
+               string json = r.ReadToEnd();
+               list = JsonConvert.DeserializeObject<List<MovieRating>>(json);
             }
         }
 
