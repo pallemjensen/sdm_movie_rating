@@ -24,7 +24,7 @@ namespace SdmTest
 
         }
 
-        //1
+        //1 On input N, what are the number of reviews from reviewer N?
         [TestMethod]
         public void NumberOfReviewsFromNReviewer_validReviewNumber()
         {
@@ -35,7 +35,7 @@ namespace SdmTest
             Console.WriteLine(numberOfReviews);
         }
 
-        //2
+        //2 - . On input N, what is the average rate that reviewer N had given?
         [TestMethod]
         public void GetAverageRatingForReviewerN_validAverage()
         {
@@ -46,7 +46,7 @@ namespace SdmTest
             Console.WriteLine(averageRating);
         }
 
-        //3
+        //3 - On input N and G, how many times has reviewer N given a movie grade G?
         [TestMethod]
         public void GetNumberOfGradeGForReviewerN_validateNumber()
         {
@@ -57,7 +57,7 @@ namespace SdmTest
             Console.WriteLine(numberOfGradeGForReviewerN);
         }
 
-        //4
+        //4 - On input N, how many have reviewed movie N?
         [TestMethod]
         public void numberOfReviewsForMovieN()
         {
@@ -68,7 +68,7 @@ namespace SdmTest
             Console.WriteLine(numberOfReviews);
         }
 
-        //5
+        //5 - On input N, what is the average rate the movie N had received?
         [TestMethod]
         public void AverageRatingForMovieN_validNumber()
         {
@@ -77,6 +77,21 @@ namespace SdmTest
             Assert.IsNotNull(averageRatingForMovieN);
 
             Console.WriteLine(averageRatingForMovieN);
+        }
+
+        // 6 - On input N and G, how many times had movie N received grade G?
+        [TestMethod]
+        public void  NumberOfTimesMovieRecievedGradeG()
+        {
+            // movie 869924
+            // rating 5
+
+            int numberOfTimesMovieNReceivedGradeG = sdmLib.NumberOfGradeGForMovieN(869924, 5);
+
+            Assert.IsNotNull(numberOfTimesMovieNReceivedGradeG);
+
+            Console.WriteLine(numberOfTimesMovieNReceivedGradeG);
+
         }
 
     }

@@ -128,9 +128,21 @@ namespace sdm_movie_rating
         }
 
         //6
-        public int NumberOfGradeGForMovieN(int grade, int movie)
+        public int NumberOfGradeGForMovieN(int movie, int grade)
         {
-            throw new NotImplementedException();
+            int result = 0;
+            int x = List.Count();
+
+            for (int i = 0; i < x; i++)
+            {
+                if (List.ElementAt(i).Movie == movie && List.ElementAt(i).Grade == grade)
+                {
+                    result++;
+                    Console.WriteLine(result);
+                }
+            }
+            return result;
+            
         }
 
         //7
