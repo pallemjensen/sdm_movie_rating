@@ -8,9 +8,13 @@ namespace sdm_movie_rating
 {
     public class SdmLib : ISdmLib
     {
+        //public Dictionary<int, MovieRating> Values = new Dictionary<int, MovieRating>();
+
         public Dictionary<int, MovieRating> Values = new Dictionary<int, MovieRating>();
 
-        public int allEntries;
+        private int _allEntries;
+
+        public int NumberOfEntries { get; private set; }
 
         public SdmLib(string filepath)
         {
@@ -22,34 +26,25 @@ namespace sdm_movie_rating
         {
             using (StreamReader r = new StreamReader(filepath))
             {
-                string json = r.ReadToEnd();
-                
-                Values = JsonConvert.DeserializeObject<Dictionary<int, MovieRating>>(json);
+                string jsonString = r.ReadToEnd();
 
-                //foreach (KeyValuePair<int, MovieRating> movieRatingKeyValuePair in Values)
-                //{
-                    
-                //}
-            }
+                var values = JsonConvert.DeserializeObject<MovieRating>(jsonString);
 
-            allEntries = Values.Count;
+                Values = new Dictionary<int, MovieRating>(_allEntries = values.Reviewer);
+
+                NumberOfEntries = Values.Count;
+
+                //Values = JsonConvert.DeserializeObject<Dictionary<int, MovieRating>>(json);
+
+            }           
         }
-
-        //Dictionary test
-        public IEnumerable<int> DicTest(int reviewer)
-        {          
-            IEnumerable<int> listReviews = from reviews in Values.Keys where reviews == reviewer select reviews;
-
-            return listReviews;
-        }
-
 
         //1
         public int NumberOfReviewsFromNReviewer(int reviewer)
         {
             int numberOfReviews = 0;          
         
-                for (int i = 0; i < allEntries; i++)
+                for (int i = 0; i < _allEntries; i++)
                 {
                     if (Values.ElementAt(i).Value.Reviewer == reviewer)
                     {
@@ -67,7 +62,7 @@ namespace sdm_movie_rating
           
             int y = 0;
 
-            for (int i = 0; i < allEntries; i++)
+            for (int i = 0; i < _allEntries; i++)
             {
                 if (Values.ElementAt(i).Value.Reviewer == reviewer)
                 {
@@ -86,7 +81,7 @@ namespace sdm_movie_rating
         {
            int result = 0;
 
-            for (int i = 0; i < allEntries; i++)
+            for (int i = 0; i < _allEntries; i++)
             {
                 if (Values.ElementAt(i).Value.Reviewer == reviewer && Values.ElementAt(i).Value.Grade == grade)
                 {
@@ -101,7 +96,7 @@ namespace sdm_movie_rating
         {
             int numberOfReviews = 0;
 
-            for (int i = 0; i < allEntries; i++)
+            for (int i = 0; i < _allEntries; i++)
             {
                 if (Values.ElementAt(i).Value.Movie == movie)
                 {
@@ -118,7 +113,7 @@ namespace sdm_movie_rating
 
             int y = 0;
 
-            for (int i = 0; i < allEntries; i++)
+            for (int i = 0; i < _allEntries; i++)
             {
                 if (Values.ElementAt(i).Value.Movie == movie)
                 {

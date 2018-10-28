@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using sdm_movie_rating;
 
@@ -9,38 +7,14 @@ namespace SdmTest
     [TestClass]
     public class SdmTest
     {
-        readonly SdmLib sdmLib = new SdmLib("ratings.json");
-
-        [TestMethod]
-        public void PreliminaryTest()
-        {
-           // int x = 1488844;
-            int x = 822109;
-
-
-            // Assert.IsNotNull(sdmLib.List.ElementAt(0));
-
-            //Movie id at element 1 = 822109
-            Assert.AreEqual(sdmLib.Values.ElementAt(1).Value.Movie, x);
-
-        }
-
-        //dictionary test
-        [TestMethod]
-        public void NumberOfReviewsFromNReviewer_validReviewNumberWithDictionary()
-        {
-            IEnumerable<int> numberOfReviews = sdmLib.DicTest(10);
-
-            Assert.IsNotNull(numberOfReviews);
-
-            Console.WriteLine(numberOfReviews);
-        }
-
+        private readonly SdmLib _sdmLib = new SdmLib("ratings.json");
+       
+       
         //1
         [TestMethod]
         public void NumberOfReviewsFromNReviewer_validReviewNumber()
         {
-            int numberOfReviews = sdmLib.NumberOfReviewsFromNReviewer(10);
+            int numberOfReviews = _sdmLib.NumberOfReviewsFromNReviewer(10);
 
             Assert.IsNotNull(numberOfReviews);
 
@@ -51,7 +25,7 @@ namespace SdmTest
         [TestMethod]
         public void GetAverageRatingForReviewerN_validAverage()
         {
-            double averageRating = sdmLib.GetAverageRatingForReviewerN(10);
+            double averageRating = _sdmLib.GetAverageRatingForReviewerN(10);
 
             Assert.IsNotNull(averageRating);
 
@@ -62,7 +36,7 @@ namespace SdmTest
         [TestMethod]
         public void GetNumberOfGradeGForReviewerN_validateNumber()
         {
-            int numberOfGradeGForReviewerN = sdmLib.GetNumberOfGradeGForReviewerN(10, 5);
+            int numberOfGradeGForReviewerN = _sdmLib.GetNumberOfGradeGForReviewerN(10, 5);
 
             Assert.IsNotNull(numberOfGradeGForReviewerN);
 
@@ -71,9 +45,9 @@ namespace SdmTest
 
         //4
         [TestMethod]
-        public void numberOfReviewsForMovieN()
+        public void NumberOfReviewsForMovieN()
         {
-            int numberOfReviews = sdmLib.NumberOfReviewsForMovieN(1567202);
+            int numberOfReviews = _sdmLib.NumberOfReviewsForMovieN(1567202);
 
             Assert.IsNotNull(numberOfReviews);
 
@@ -84,7 +58,7 @@ namespace SdmTest
         [TestMethod]
         public void AverageRatingForMovieN_validNumber()
         {
-            double averageRatingForMovieN = sdmLib.AverageRatingForMovieN(1567202);
+            double averageRatingForMovieN = _sdmLib.AverageRatingForMovieN(1567202);
 
             Assert.IsNotNull(averageRatingForMovieN);
 
