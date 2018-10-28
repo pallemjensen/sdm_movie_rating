@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using sdm_movie_rating;
@@ -8,7 +9,7 @@ namespace SdmTest
     [TestClass]
     public class SdmTest
     {
-        SdmLib sdmLib = new SdmLib("ratings.json");
+        readonly SdmLib sdmLib = new SdmLib("ratings.json");
 
         [TestMethod]
         public void PreliminaryTest()
@@ -20,8 +21,19 @@ namespace SdmTest
             // Assert.IsNotNull(sdmLib.List.ElementAt(0));
 
             //Movie id at element 1 = 822109
-            Assert.AreEqual(sdmLib.List.ElementAt(1).Movie, x);
+            Assert.AreEqual(sdmLib.Values.ElementAt(1).Value.Movie, x);
 
+        }
+
+        //dictionary test
+        [TestMethod]
+        public void NumberOfReviewsFromNReviewer_validReviewNumberWithDictionary()
+        {
+            IEnumerable<int> numberOfReviews = sdmLib.DicTest(10);
+
+            Assert.IsNotNull(numberOfReviews);
+
+            Console.WriteLine(numberOfReviews);
         }
 
         //1

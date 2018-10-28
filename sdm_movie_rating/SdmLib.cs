@@ -2,39 +2,56 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using Newtonsoft.Json;
 
 namespace sdm_movie_rating 
 {
     public class SdmLib : ISdmLib
     {
-        public IEnumerable<MovieRating> List;
+        public Dictionary<int, MovieRating> Values = new Dictionary<int, MovieRating>();
+
+        public int allEntries;
 
         public SdmLib(string filepath)
         {
             LoadJson(filepath);
+
         }
 
         public void LoadJson(String filepath)
         {
             using (StreamReader r = new StreamReader(filepath))
             {
-               string json = r.ReadToEnd();
-               List = JsonConvert.DeserializeObject<List<MovieRating>>(json);
+                string json = r.ReadToEnd();
+                
+                Values = JsonConvert.DeserializeObject<Dictionary<int, MovieRating>>(json);
+
+                //foreach (KeyValuePair<int, MovieRating> movieRatingKeyValuePair in Values)
+                //{
+                    
+                //}
             }
+
+            allEntries = Values.Count;
         }
+
+        //Dictionary test
+        public IEnumerable<int> DicTest(int reviewer)
+        {          
+            IEnumerable<int> listReviews = from reviews in Values.Keys where reviews == reviewer select reviews;
+
+            return listReviews;
+        }
+
 
         //1
         public int NumberOfReviewsFromNReviewer(int reviewer)
         {
-            int numberOfReviews = 0;
-
-            int x = List.Count();
+            int numberOfReviews = 0;          
         
-                for (int i = 0; i < x; i++)
+                for (int i = 0; i < allEntries; i++)
                 {
-                    if (List.ElementAt(i).Reviewer == reviewer)
+                    if (Values.ElementAt(i).Value.Reviewer == reviewer)
                     {
                         numberOfReviews++;
                     }
@@ -46,25 +63,20 @@ namespace sdm_movie_rating
         //2
         public double GetAverageRatingForReviewerN(int reviewer)
         {
-            double averageRating = 0;
-
-            //can be int, but resharper is annoyed
             double cumulativeRating = 0;
-
-            int x = List.Count();
-
+          
             int y = 0;
 
-            for (int i = 0; i < x; i++)
+            for (int i = 0; i < allEntries; i++)
             {
-                if (List.ElementAt(i).Reviewer == reviewer)
+                if (Values.ElementAt(i).Value.Reviewer == reviewer)
                 {
                   y++;
-                  cumulativeRating  = cumulativeRating + List.ElementAt(i).Grade;
+                  cumulativeRating  = cumulativeRating + Values.ElementAt(i).Value.Grade;
                 }
 
             }
-            averageRating = cumulativeRating / y;
+            var averageRating = cumulativeRating / y;
 
             return averageRating;
         }
@@ -73,11 +85,10 @@ namespace sdm_movie_rating
         public int GetNumberOfGradeGForReviewerN(int reviewer, int grade)
         {
            int result = 0;
-           int x = List.Count();
- 
-            for (int i = 0; i < x; i++)
+
+            for (int i = 0; i < allEntries; i++)
             {
-                if (List.ElementAt(i).Reviewer == reviewer && List.ElementAt(i).Grade == grade)
+                if (Values.ElementAt(i).Value.Reviewer == reviewer && Values.ElementAt(i).Value.Grade == grade)
                 {
                     result++;                  
                 }
@@ -90,11 +101,9 @@ namespace sdm_movie_rating
         {
             int numberOfReviews = 0;
 
-            int x = List.Count();
-
-            for (int i = 0; i < x; i++)
+            for (int i = 0; i < allEntries; i++)
             {
-                if (List.ElementAt(i).Movie == movie)
+                if (Values.ElementAt(i).Value.Movie == movie)
                 {
                     numberOfReviews++;
                 }
@@ -107,22 +116,18 @@ namespace sdm_movie_rating
         {
             double cumulativeMovieRating = 0;
 
-            int x = List.Count();
-
             int y = 0;
 
-            double averageMovieRating = 0;
-
-            for (int i = 0; i < x; i++)
+            for (int i = 0; i < allEntries; i++)
             {
-                if (List.ElementAt(i).Movie == movie)
+                if (Values.ElementAt(i).Value.Movie == movie)
                 {
                     y++;
-                    cumulativeMovieRating = cumulativeMovieRating + List.ElementAt(i).Grade;
+                    cumulativeMovieRating = cumulativeMovieRating + Values.ElementAt(i).Value.Grade;
                 }
             }
 
-            averageMovieRating = cumulativeMovieRating / y;
+            var averageMovieRating = cumulativeMovieRating / y;
 
             return averageMovieRating;
         }
