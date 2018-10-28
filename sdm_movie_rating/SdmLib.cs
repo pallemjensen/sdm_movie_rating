@@ -10,10 +10,12 @@ namespace sdm_movie_rating
     public class SdmLib : ISdmLib
     {
         public IEnumerable<MovieRating> List;
-
+        public Dictionary<int, List<MovieRating>> Reviewers = new Dictionary<int, List<MovieRating>>();
+        //private int nr = test[111].Count;
         public SdmLib(string filepath)
         {
             LoadJson(filepath);
+            fillDictionaries();
         }
 
         public void LoadJson(String filepath)
@@ -25,9 +27,28 @@ namespace sdm_movie_rating
             }
         }
 
+        private void fillDictionaries()
+        {
+            foreach (MovieRating mr in List)
+            {
+                int reviewer = mr.Reviewer;
+                if (Reviewers.ContainsKey(reviewer))
+                {
+                    Reviewers[reviewer].Add(mr);
+                }
+                else
+                {
+                    Reviewers.Add(reviewer,new List<MovieRating>());
+                    Reviewers[reviewer].Add(mr);
+                }
+            }
+        }
+
         //1
         public int NumberOfReviewsFromNReviewer(int reviewer)
         {
+            return Reviewers[reviewer].Count;
+
             //int numberOfReviews = 0;
 
             //int x = List.Count();
@@ -39,8 +60,8 @@ namespace sdm_movie_rating
             //            numberOfReviews++;
             //        }
             //    }
-            var numberOfReviews = (from list in List where list.Reviewer == reviewer select list.Movie).Count();
-            return numberOfReviews;
+            //var numberOfReviews = (from list in List where list.Reviewer == reviewer select list.Movie).Count();
+            //return numberOfReviews;
         }
 
         //2

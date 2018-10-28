@@ -8,19 +8,24 @@ namespace SdmTest
     [TestClass]
     public class SdmTest
     {
-        SdmLib sdmLib = new SdmLib("ratings.json");
+        private static readonly string jsonFilePath = "C:\\Users\\Bruger\\ThirdSemester\\sdm_movie_rating\\ratings.json";
+
+        SdmLib sdmLib = new SdmLib(jsonFilePath);
 
         [TestMethod]
         public void PreliminaryTest()
         {
            // int x = 1488844;
             int x = 822109;
-
+            // Number of entries in specific json file
+            long numOfEntries = 5009439;
 
             // Assert.IsNotNull(sdmLib.List.ElementAt(0));
 
             //Movie id at element 1 = 822109
             Assert.AreEqual(sdmLib.List.ElementAt(1).Movie, x);
+
+            Assert.AreEqual(numOfEntries, sdmLib.List.LongCount());
 
         }
 
@@ -34,7 +39,7 @@ namespace SdmTest
 
             Console.WriteLine(numberOfReviews);
         }
-
+        /*
         //2
         [TestMethod]
         public void GetAverageRatingForReviewerN_validAverage()
@@ -78,6 +83,6 @@ namespace SdmTest
 
             Console.WriteLine(averageRatingForMovieN);
         }
-
+        */
     }
 }
