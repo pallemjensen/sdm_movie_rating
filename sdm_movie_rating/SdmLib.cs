@@ -47,6 +47,7 @@ namespace sdm_movie_rating
         //1
         public int NumberOfReviewsFromNReviewer(int reviewer)
         {
+            // New Dictionary method
             return Reviewers[reviewer].Count;
 
             //int numberOfReviews = 0;
@@ -67,6 +68,23 @@ namespace sdm_movie_rating
         //2
         public double GetAverageRatingForReviewerN(int reviewer)
         {
+            if (Reviewers.ContainsKey(reviewer))
+            {
+                double totalScore = 0.0;
+                List<MovieRating> reviewerMovies = Reviewers[reviewer];
+                foreach (MovieRating mr in reviewerMovies)
+                {
+                    totalScore = totalScore + mr.Grade;
+                }
+
+                return totalScore/reviewerMovies.Count;
+            }
+            else
+            {
+                return 0.0;
+            }
+
+            /*
             double averageRating = 0;
 
             //can be int, but resharper is annoyed
@@ -88,6 +106,7 @@ namespace sdm_movie_rating
             averageRating = cumulativeRating / y;
 
             return averageRating;
+            */
         }
 
         //3

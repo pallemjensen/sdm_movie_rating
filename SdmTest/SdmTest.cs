@@ -39,7 +39,7 @@ namespace SdmTest
 
             Console.WriteLine(numberOfReviews);
         }
-        /*
+        
         //2
         [TestMethod]
         public void GetAverageRatingForReviewerN_validAverage()
@@ -50,7 +50,7 @@ namespace SdmTest
 
             Console.WriteLine(averageRating);
         }
-
+        /*
         //3
         [TestMethod]
         public void GetNumberOfGradeGForReviewerN_validateNumber()
