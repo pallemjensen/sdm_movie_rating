@@ -28,18 +28,18 @@ namespace sdm_movie_rating
         //1
         public int NumberOfReviewsFromNReviewer(int reviewer)
         {
-            int numberOfReviews = 0;
+            //int numberOfReviews = 0;
 
-            int x = List.Count();
-        
-                for (int i = 0; i < x; i++)
-                {
-                    if (List.ElementAt(i).Reviewer == reviewer)
-                    {
-                        numberOfReviews++;
-                    }
-                }
-                         
+            //int x = List.Count();
+
+            //    for (int i = 0; i < x; i++)
+            //    {
+            //        if (List.ElementAt(i).Reviewer == reviewer)
+            //        {
+            //            numberOfReviews++;
+            //        }
+            //    }
+            var numberOfReviews = (from list in List where list.Reviewer == reviewer select list.Movie).Count();
             return numberOfReviews;
         }
 
