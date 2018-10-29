@@ -24,7 +24,7 @@ namespace sdm_movie_rating
             using (StreamReader r = new StreamReader(filepath))
             {
                string json = r.ReadToEnd();
-               List = JsonConvert.DeserializeObject<List<MovieRating>>(json);
+               List = JsonConvert.DeserializeObject<List<MovieRating>>(json).AsParallel();
             }
         }
 
@@ -33,6 +33,7 @@ namespace sdm_movie_rating
             foreach (MovieRating mr in List)
             {
                 int reviewer = mr.Reviewer;
+                /*
                 if (ReviewerMovieRatings.ContainsKey(reviewer))
                 {
                     ReviewerMovieRatings[reviewer].Add(mr);
@@ -42,7 +43,7 @@ namespace sdm_movie_rating
                     ReviewerMovieRatings.Add(reviewer,new List<MovieRating>());
                     ReviewerMovieRatings[reviewer].Add(mr);
                 }
-
+                */
                 if (ReviewerReviews.ContainsKey(reviewer))
                 {
                     ReviewerReviews[reviewer].Add(mr.Grade);
@@ -59,7 +60,6 @@ namespace sdm_movie_rating
         public int NumberOfReviewsFromNReviewer(int reviewer)
         {
             // New Dictionary method
-           // return ReviewerMovieRatings[reviewer].Count;
             if (ReviewerReviews.ContainsKey(reviewer))
             {
                 return ReviewerReviews[reviewer].Count;
