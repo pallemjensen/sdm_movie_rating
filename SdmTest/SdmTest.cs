@@ -11,7 +11,7 @@ namespace SdmTest
         private static readonly string jsonFilePath = "C:\\Users\\Bruger\\ThirdSemester\\sdm_movie_rating\\ratings.json";
 
         SdmLib sdmLib = new SdmLib(jsonFilePath);
-
+        /*
         [TestMethod]
         public void PreliminaryTest()
         {
@@ -24,33 +24,42 @@ namespace SdmTest
 
             //Movie id at element 1 = 822109
             Assert.AreEqual(sdmLib.List.ElementAt(1).Movie, x);
-
+            //Number of entries = 5009439
             Assert.AreEqual(numOfEntries, sdmLib.List.LongCount());
 
         }
-
+        */
         //1
         [TestMethod]
         public void NumberOfReviewsFromNReviewer_validReviewNumber()
         {
-            int numberOfReviews = sdmLib.NumberOfReviewsFromNReviewer(10);
+            int numberOfReviews = sdmLib.NumberOfReviewsFromNReviewer(9);
 
             Assert.IsNotNull(numberOfReviews);
-
+            
             Console.WriteLine(numberOfReviews);
+            //Console.WriteLine(sdmLib.NumberOfReviewsFromNReviewer(11));
+            
         }
         
         //2
         [TestMethod]
         public void GetAverageRatingForReviewerN_validAverage()
         {
-            double averageRating = sdmLib.GetAverageRatingForReviewerN(10);
+            double averageRating = sdmLib.GetAverageRatingForReviewerN(9);
 
             Assert.IsNotNull(averageRating);
-
             Console.WriteLine(averageRating);
+            /*
+            Console.WriteLine(averageRating);
+
+            for (int i = 21; i < 41; i++)
+            {
+                Console.WriteLine(sdmLib.GetAverageRatingForReviewerN(i));
+            }
+            */
         }
-        /*
+        
         //3
         [TestMethod]
         public void GetNumberOfGradeGForReviewerN_validateNumber()
@@ -58,10 +67,18 @@ namespace SdmTest
             int numberOfGradeGForReviewerN = sdmLib.GetNumberOfGradeGForReviewerN(10, 5);
 
             Assert.IsNotNull(numberOfGradeGForReviewerN);
-
             Console.WriteLine(numberOfGradeGForReviewerN);
-        }
 
+            for (int j = 10; j < 20; j++)
+            {
+                for (int i = 0; i < 6; i++)
+                {
+                    Console.Write("Reviewer: "+j+" Grade: "+i+"times given = ");
+                    Console.WriteLine(sdmLib.GetNumberOfGradeGForReviewerN(j, i));
+                }
+            }
+        }
+        /*
         //4
         [TestMethod]
         public void numberOfReviewsForMovieN()

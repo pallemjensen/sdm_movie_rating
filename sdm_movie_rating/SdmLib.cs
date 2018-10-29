@@ -10,8 +10,9 @@ namespace sdm_movie_rating
     public class SdmLib : ISdmLib
     {
         public IEnumerable<MovieRating> List;
-        public Dictionary<int, List<MovieRating>> Reviewers = new Dictionary<int, List<MovieRating>>();
-        //private int nr = test[111].Count;
+        public Dictionary<int, List<MovieRating>> ReviewerMovieRatings = new Dictionary<int, List<MovieRating>>();
+        public Dictionary<int, List<int>> ReviewerReviews = new Dictionary<int, List<int>>();
+
         public SdmLib(string filepath)
         {
             LoadJson(filepath);
@@ -32,14 +33,24 @@ namespace sdm_movie_rating
             foreach (MovieRating mr in List)
             {
                 int reviewer = mr.Reviewer;
-                if (Reviewers.ContainsKey(reviewer))
+                if (ReviewerMovieRatings.ContainsKey(reviewer))
                 {
-                    Reviewers[reviewer].Add(mr);
+                    ReviewerMovieRatings[reviewer].Add(mr);
                 }
                 else
                 {
-                    Reviewers.Add(reviewer,new List<MovieRating>());
-                    Reviewers[reviewer].Add(mr);
+                    ReviewerMovieRatings.Add(reviewer,new List<MovieRating>());
+                    ReviewerMovieRatings[reviewer].Add(mr);
+                }
+
+                if (ReviewerReviews.ContainsKey(reviewer))
+                {
+                    ReviewerReviews[reviewer].Add(mr.Grade);
+                }
+                else
+                {
+                    ReviewerReviews.Add(reviewer, new List<int>());
+                    ReviewerReviews[reviewer].Add(mr.Grade);
                 }
             }
         }
@@ -48,7 +59,13 @@ namespace sdm_movie_rating
         public int NumberOfReviewsFromNReviewer(int reviewer)
         {
             // New Dictionary method
-            return Reviewers[reviewer].Count;
+           // return ReviewerMovieRatings[reviewer].Count;
+            if (ReviewerReviews.ContainsKey(reviewer))
+            {
+                return ReviewerReviews[reviewer].Count;
+            }
+
+            return 0;
 
             //int numberOfReviews = 0;
 
@@ -68,10 +85,18 @@ namespace sdm_movie_rating
         //2
         public double GetAverageRatingForReviewerN(int reviewer)
         {
-            if (Reviewers.ContainsKey(reviewer))
+            //New Dictionary Way
+            if (ReviewerReviews.ContainsKey(reviewer))
+            {
+                return ReviewerReviews[reviewer].Average();
+            }
+
+            return 0.0;
+            /*
+            if (ReviewerMovieRatings.ContainsKey(reviewer))
             {
                 double totalScore = 0.0;
-                List<MovieRating> reviewerMovies = Reviewers[reviewer];
+                List<MovieRating> reviewerMovies = ReviewerMovieRatings[reviewer];
                 foreach (MovieRating mr in reviewerMovies)
                 {
                     totalScore = totalScore + mr.Grade;
@@ -112,7 +137,16 @@ namespace sdm_movie_rating
         //3
         public int GetNumberOfGradeGForReviewerN(int reviewer, int grade)
         {
-           int result = 0;
+            //New Dictionary method
+            if (ReviewerReviews.ContainsKey(reviewer))
+            {
+                List<int> number = ReviewerReviews[reviewer].FindAll(v => v==grade);
+                return number.Count;
+            }
+
+            return 0;
+            /*
+            int result = 0;
            int x = List.Count();
  
             for (int i = 0; i < x; i++)
@@ -123,6 +157,7 @@ namespace sdm_movie_rating
                 }
             }
             return result;
+            */
         }
 
         //4
