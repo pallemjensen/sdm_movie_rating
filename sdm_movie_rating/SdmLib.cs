@@ -10,8 +10,12 @@ namespace sdm_movie_rating
     public class SdmLib : ISdmLib
     {
         public IEnumerable<MovieRating> List;
+        //Key=Reviewer  Value=MovieRating as List<MovieRating>
         public Dictionary<int, List<MovieRating>> ReviewerMovieRatings = new Dictionary<int, List<MovieRating>>();
+        //Key=Reviewer  Value=Review as List<int>
         public Dictionary<int, List<int>> ReviewerReviews = new Dictionary<int, List<int>>();
+        //Key=Movie  Value=Review as List<int>
+        public Dictionary<int, List<int>> MovieReviews = new Dictionary<int, List<int>>();
 
         public SdmLib(string filepath)
         {
@@ -33,7 +37,7 @@ namespace sdm_movie_rating
             foreach (MovieRating mr in List)
             {
                 int reviewer = mr.Reviewer;
-                /*
+                //Fill ReviewerMovieRatings<> Dictionary
                 if (ReviewerMovieRatings.ContainsKey(reviewer))
                 {
                     ReviewerMovieRatings[reviewer].Add(mr);
@@ -43,7 +47,7 @@ namespace sdm_movie_rating
                     ReviewerMovieRatings.Add(reviewer,new List<MovieRating>());
                     ReviewerMovieRatings[reviewer].Add(mr);
                 }
-                */
+                //Fill ReviewerReviews<> Dictionary
                 if (ReviewerReviews.ContainsKey(reviewer))
                 {
                     ReviewerReviews[reviewer].Add(mr.Grade);
@@ -53,6 +57,19 @@ namespace sdm_movie_rating
                     ReviewerReviews.Add(reviewer, new List<int>());
                     ReviewerReviews[reviewer].Add(mr.Grade);
                 }
+                //Fill MovieReviews<> Dictionary
+                int movie = mr.Movie;
+
+                if (MovieReviews.ContainsKey(movie))
+                {
+                    MovieReviews[movie].Add(mr.Grade);
+                }
+                else
+                {
+                    MovieReviews.Add(movie, new List<int>());
+                    MovieReviews[movie].Add(mr.Grade);
+                }
+
             }
         }
 
@@ -163,6 +180,14 @@ namespace sdm_movie_rating
         //4
         public int NumberOfReviewsForMovieN(int movie)
         {
+            if (MovieReviews.ContainsKey(movie))
+            {
+                return MovieReviews[movie].Count;
+            }
+
+            return 0;
+
+            /*
             int numberOfReviews = 0;
 
             int x = List.Count();
@@ -175,6 +200,7 @@ namespace sdm_movie_rating
                 }
             }
             return numberOfReviews;
+            */
         }
 
         //5

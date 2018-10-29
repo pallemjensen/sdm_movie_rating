@@ -101,7 +101,7 @@ namespace SdmTest
             sw.Stop();
             Console.WriteLine("MilliSeconds elapsed: "+ sw.ElapsedMilliseconds);
         }
-        /*
+        
         //4
         [TestMethod]
         public void numberOfReviewsForMovieN()
@@ -112,7 +112,7 @@ namespace SdmTest
 
             Console.WriteLine(numberOfReviews);
         }
-
+        /*
         //5
         [TestMethod]
         public void AverageRatingForMovieN_validNumber()
