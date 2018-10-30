@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using sdm_movie_rating;
@@ -8,6 +9,12 @@ namespace SdmTest
     [TestClass]
     public class SdmTest
     {
+        private static readonly string jsonFilePath = "C:\\Users\\Bruger\\ThirdSemester\\sdm_movie_rating\\ratings.json";
+        private StreamReader r = new StreamReader(jsonFilePath);
+
+        private static string testString = "[{ Reviewer:1, Movie:1488844, Grade:3, Date:'2005-09-06'}]";
+        private StringReader testReader = new StringReader(testString);
+
         SdmLib sdmLib = new SdmLib("ratings.json");
 
         [TestMethod]
