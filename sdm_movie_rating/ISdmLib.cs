@@ -1,41 +1,1 @@
-﻿using System.Collections.Generic;
-
-namespace sdm_movie_rating
-{
-    public interface ISdmLib
-    {
-        //1
-        int NumberOfReviewsFromNReviewer(int reviewer);
-
-        //2
-        double GetAverageRatingForReviewerN(int reviewer);
-
-        //3
-        int GetNumberOfGradeGForReviewerN(int reviewer, int grade);
-
-        //4
-        int NumberOfReviewsForMovieN(int movie);
-
-        //5
-        double AverageRatingForMovieN(int movie);
-
-        //6
-        int NumberOfGradeGForMovieN(int grade, int movie);
-
-        //7  
-        List<int> IdsForMoviesWithTopRates();
-
-        //8
-        List<int> ReviewersWithMostReviews();
-
-        //9
-        List<int> GetTopMovieIdsFromNNumberOfMovies(int n);
-
-        //10
-        List<int> GetMoviesReviewedByNWithRateDecreasingDateIncreasing(int n);
-
-        //11
-        List<int> GetReviewersWhoReviewedMovieNWithRateDecreasingDateIncreasing(int movie);
-
-    }
-}
+﻿using System.Collections.Generic;  namespace sdm_movie_rating {     public interface ISdmLib     {         //1          /*          * Get the amount of reviews from N, and returns int reviewer.          */         int NumberOfReviewsFromN(int reviewer);          //2         /*          * Gets the average rating for reviewer N, and returns the reviewer          */         double GetAverageRatingForReviewerN(int reviewer);          //3         /*          * Gets the number of time a reviewer N has given a movie grade G, and returns the reviewer and the grade.          */         int GetNumberOfGradeGForReviewerN(int reviewer, int grade);          //4         /*          *  Gets the number of times the movie N has been reviewed.          */         int NumberOfReviewsForMovieN(int movie);          //5         /*          * Gets the average rating the movie N has recieved          */         double AverageRatingForMovieN(int movie);          //6         /*          * Gets the amount of time movie N has recieved grade G, and returns grade and movie.          */         int NumberOfGradeGForMovieN(int grade, int movie);          //7           /*          * Gets the ids' for the movies with the highest rating, and returns them in a list          */         List<int> IdsForMoviesWithTopRates();          //8         /*          * Gets the reviewer that has made the most reviews. And returns them to a list.          */         List<int> ReviewersWithMostReviews();                  //9         /*          * Gets the id of the top movies, and returns a list.          */         List<int> GetTopMovieIdsFromNNumberOfMovies(int n);          //10         /*          *  Gets the movies reviewed by the reviewer. Returns a list with the ratings, decreasing.           */         List<int> GetMoviesReviewedByNWithRateDecreasingDateIncreasing(int n);          //11         /*          *  Gets a list of reviewers that has reviewed the entered movie.           */         List<int> GetReviewersWhoReviewedMovieNWithRateDecreasingDateIncreasing(int movie);      } }  
