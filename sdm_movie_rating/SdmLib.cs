@@ -28,6 +28,48 @@ namespace sdm_movie_rating
             {
                string json = r.ReadToEnd();
                List = JsonConvert.DeserializeObject<List<MovieRating>>(json);
+               fillDictionaries();
+            }
+        }
+
+        private void fillDictionaries()
+        {
+            foreach (MovieRating mr in List)
+            {
+                int reviewer = mr.Reviewer;
+                //Fill ReviewerMovieRatings<> Dictionary
+                if (ReviewerMovieRatings.ContainsKey(reviewer))
+                {
+                    ReviewerMovieRatings[reviewer].Add(mr);
+                }
+                else
+                {
+                    ReviewerMovieRatings.Add(reviewer, new List<MovieRating>());
+                    ReviewerMovieRatings[reviewer].Add(mr);
+                }
+                //Fill ReviewerReviews<> Dictionary
+                if (ReviewerReviews.ContainsKey(reviewer))
+                {
+                    ReviewerReviews[reviewer].Add(mr.Grade);
+                }
+                else
+                {
+                    ReviewerReviews.Add(reviewer, new List<int>());
+                    ReviewerReviews[reviewer].Add(mr.Grade);
+                }
+                //Fill MovieReviews<> Dictionary
+                int movie = mr.Movie;
+
+                if (MovieReviews.ContainsKey(movie))
+                {
+                    MovieReviews[movie].Add(mr.Grade);
+                }
+                else
+                {
+                    MovieReviews.Add(movie, new List<int>());
+                    MovieReviews[movie].Add(mr.Grade);
+                }
+
             }
         }
 
