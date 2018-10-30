@@ -17,12 +17,12 @@ namespace sdm_movie_rating
         //Key=Movie  Value=Review as List<int>
         public Dictionary<int, List<int>> MovieReviews = new Dictionary<int, List<int>>();
 
-        public SdmLib(StreamReader r)
+        public SdmLib(TextReader r)
         {
             LoadJson(r);
         }
 
-        public void LoadJson(StreamReader r)
+        public void LoadJson(TextReader r)
         {
             using (r)
             {

@@ -11,35 +11,38 @@ namespace SdmTest
     public class SdmTest
     {
         private Stopwatch sw = new Stopwatch();
-        
         private static readonly string jsonFilePath = "C:\\Users\\Bruger\\ThirdSemester\\sdm_movie_rating\\ratings.json";
         private StreamReader r = new StreamReader(jsonFilePath);
+
+        private static string testString = "[{ Reviewer:1, Movie:1488844, Grade:3, Date:'2005-09-06'}]";
+        private StringReader testReader = new StringReader(testString);
+
         SdmLib sdmLib;
 
         public SdmTest()
         {
-            sdmLib = new SdmLib(r);
+            sdmLib = new SdmLib(testReader);
             //Console.WriteLine("TotalMilliSeconds elapsed: " + sw.Elapsed.TotalMilliseconds);
         }
         
         [TestMethod]
         public void PreliminaryTest()
         {
+            /*
             sw.Start();
             // int x = 1488844;
             int x = 822109;
             // Number of entries in specific json file
             long numOfEntries = 5009439;
-
-            // Assert.IsNotNull(sdmLib.List.ElementAt(0));
-
+            */
+            Assert.IsNotNull(sdmLib.List.ElementAt(0));
+            /*
             //Movie id at element 1 = 822109
             Assert.AreEqual(sdmLib.List.ElementAt(1).Movie, x);
             //Number of entries = 5009439
             Assert.AreEqual(numOfEntries, sdmLib.List.LongCount());
-            //sw.Stop();
             Console.WriteLine("TotalMilliSeconds elapsed: " + sw.Elapsed.TotalMilliseconds);
-            //sw.Reset();
+            */
         }
         
         
@@ -48,35 +51,20 @@ namespace SdmTest
         public void NumberOfReviewsFromNReviewer_validReviewNumber()
         {
             //sw.Start();
-            int numberOfReviews = sdmLib.NumberOfReviewsFromNReviewer(9);
+            int numberOfReviews = sdmLib.NumberOfReviewsFromNReviewer(1);
 
             Assert.IsNotNull(numberOfReviews);
             
-            Console.WriteLine(numberOfReviews);
-            //Console.WriteLine(sdmLib.NumberOfReviewsFromNReviewer(11));
-            //sw.Stop();
-            Console.WriteLine("TotalMilliSeconds elapsed: " + sw.Elapsed.TotalMilliseconds);
-            //sw.Reset();
         }
         
         //2
         [TestMethod]
         public void GetAverageRatingForReviewerN_validAverage()
         {
-            //sw.Start();
             double averageRating = sdmLib.GetAverageRatingForReviewerN(9);
 
             Assert.IsNotNull(averageRating);
-            Console.WriteLine(averageRating);
-            /*
-            for (int i = 1; i < 101; i++)
-            {
-                Console.WriteLine("Average rating for reviewer"+ i +" = "+sdmLib.GetAverageRatingForReviewerN(i));
-            }
-            */
-            //sw.Stop();
-            Console.WriteLine("TotalMilliSeconds elapsed: " + sw.Elapsed.TotalMilliseconds);
-            //sw.Reset();
+            
         }
         
         //3
@@ -84,7 +72,7 @@ namespace SdmTest
         public void GetNumberOfGradeGForReviewerN_validateNumber()
         {
             //sw.Start();
-            int numberOfGradeGForReviewerN = sdmLib.GetNumberOfGradeGForReviewerN(10, 5);
+            int numberOfGradeGForReviewerN = sdmLib.GetNumberOfGradeGForReviewerN(1, 3);
 
             Assert.IsNotNull(numberOfGradeGForReviewerN);
             Console.WriteLine(numberOfGradeGForReviewerN);
@@ -99,7 +87,7 @@ namespace SdmTest
             }
             */
             //sw.Stop();
-            Console.WriteLine("TotalMilliSeconds elapsed: " + sw.Elapsed.TotalMilliseconds);
+           // Console.WriteLine("TotalMilliSeconds elapsed: " + sw.Elapsed.TotalMilliseconds);
             //sw.Reset();
         }
         
@@ -108,7 +96,7 @@ namespace SdmTest
         public void numberOfReviewsForMovieN()
         {
             //sw.Start();
-            int numberOfReviews = sdmLib.NumberOfReviewsForMovieN(1567202);
+            int numberOfReviews = sdmLib.NumberOfReviewsForMovieN(1488844);
 
             Assert.IsNotNull(numberOfReviews);
             Console.WriteLine(numberOfReviews);
