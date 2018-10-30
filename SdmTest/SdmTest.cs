@@ -1,5 +1,6 @@
 using System;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using sdm_movie_rating;
@@ -12,12 +13,12 @@ namespace SdmTest
         private Stopwatch sw = new Stopwatch();
         
         private static readonly string jsonFilePath = "C:\\Users\\Bruger\\ThirdSemester\\sdm_movie_rating\\ratings.json";
-
+        private StreamReader r = new StreamReader(jsonFilePath);
         SdmLib sdmLib;
 
         public SdmTest()
         {
-            sdmLib = new SdmLib(jsonFilePath);
+            sdmLib = new SdmLib(r);
             //Console.WriteLine("TotalMilliSeconds elapsed: " + sw.Elapsed.TotalMilliseconds);
         }
         

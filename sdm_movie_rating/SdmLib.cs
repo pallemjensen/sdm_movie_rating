@@ -17,21 +17,21 @@ namespace sdm_movie_rating
         //Key=Movie  Value=Review as List<int>
         public Dictionary<int, List<int>> MovieReviews = new Dictionary<int, List<int>>();
 
-        public SdmLib(string filepath)
+        public SdmLib(StreamReader r)
         {
-            LoadJson(filepath);
-            fillDictionaries();
+            LoadJson(r);
         }
 
-        public void LoadJson(String filepath)
+        public void LoadJson(StreamReader r)
         {
-            using (StreamReader r = new StreamReader(filepath))
+            using (r)
             {
                string json = r.ReadToEnd();
-               List = JsonConvert.DeserializeObject<List<MovieRating>>(json).AsParallel();
+               List = JsonConvert.DeserializeObject<List<MovieRating>>(json);
+               fillDictionaries();
             }
         }
-
+        
         private void fillDictionaries()
         {
             foreach (MovieRating mr in List)
@@ -44,7 +44,7 @@ namespace sdm_movie_rating
                 }
                 else
                 {
-                    ReviewerMovieRatings.Add(reviewer,new List<MovieRating>());
+                    ReviewerMovieRatings.Add(reviewer, new List<MovieRating>());
                     ReviewerMovieRatings[reviewer].Add(mr);
                 }
                 //Fill ReviewerReviews<> Dictionary
@@ -76,14 +76,6 @@ namespace sdm_movie_rating
         //1
         public int NumberOfReviewsFromNReviewer(int reviewer)
         {
-            // New Dictionary method
-            if (ReviewerReviews.ContainsKey(reviewer))
-            {
-                return ReviewerReviews[reviewer].Count;
-            }
-
-            return 0;
-
             //int numberOfReviews = 0;
 
             //int x = List.Count();
@@ -95,38 +87,13 @@ namespace sdm_movie_rating
             //            numberOfReviews++;
             //        }
             //    }
-            //var numberOfReviews = (from list in List where list.Reviewer == reviewer select list.Movie).Count();
-            //return numberOfReviews;
+            var numberOfReviews = (from list in List where list.Reviewer == reviewer select list.Movie).Count();
+            return numberOfReviews;
         }
 
         //2
         public double GetAverageRatingForReviewerN(int reviewer)
         {
-            //New Dictionary Way
-            if (ReviewerReviews.ContainsKey(reviewer))
-            {
-                return ReviewerReviews[reviewer].Average();
-            }
-
-            return 0.0;
-            /*
-            if (ReviewerMovieRatings.ContainsKey(reviewer))
-            {
-                double totalScore = 0.0;
-                List<MovieRating> reviewerMovies = ReviewerMovieRatings[reviewer];
-                foreach (MovieRating mr in reviewerMovies)
-                {
-                    totalScore = totalScore + mr.Grade;
-                }
-
-                return totalScore/reviewerMovies.Count;
-            }
-            else
-            {
-                return 0.0;
-            }
-
-            /*
             double averageRating = 0;
 
             //can be int, but resharper is annoyed
@@ -148,22 +115,12 @@ namespace sdm_movie_rating
             averageRating = cumulativeRating / y;
 
             return averageRating;
-            */
         }
 
         //3
         public int GetNumberOfGradeGForReviewerN(int reviewer, int grade)
         {
-            //New Dictionary method
-            if (ReviewerReviews.ContainsKey(reviewer))
-            {
-                List<int> number = ReviewerReviews[reviewer].FindAll(v => v==grade);
-                return number.Count;
-            }
-
-            return 0;
-            /*
-            int result = 0;
+           int result = 0;
            int x = List.Count();
  
             for (int i = 0; i < x; i++)
@@ -174,20 +131,11 @@ namespace sdm_movie_rating
                 }
             }
             return result;
-            */
         }
 
         //4
         public int NumberOfReviewsForMovieN(int movie)
         {
-            if (MovieReviews.ContainsKey(movie))
-            {
-                return MovieReviews[movie].Count;
-            }
-
-            return 0;
-
-            /*
             int numberOfReviews = 0;
 
             int x = List.Count();
@@ -200,7 +148,6 @@ namespace sdm_movie_rating
                 }
             }
             return numberOfReviews;
-            */
         }
 
         //5
