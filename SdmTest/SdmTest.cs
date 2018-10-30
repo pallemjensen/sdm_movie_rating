@@ -9,9 +9,12 @@ namespace SdmTest
     [TestClass]
     public class SdmTest
     {
+        //For use in integration tests
+        // FilePath must be changed for different users!!!
         private static readonly string jsonFilePath = "C:\\Users\\Bruger\\ThirdSemester\\sdm_movie_rating\\ratings.json";
         private StreamReader r = new StreamReader(jsonFilePath);
 
+        //For use in unit tests
         private static string testString = "[{ Reviewer:1, Movie:1488844, Grade:3, Date:'2005-09-06'}]";
         private StringReader testReader = new StringReader(testString);
 
@@ -38,9 +41,7 @@ namespace SdmTest
         {
             int numberOfReviews = sdmLib.NumberOfReviewsFromNReviewer(1);
 
-            Assert.IsNotNull(numberOfReviews);
-
-            Console.WriteLine(numberOfReviews);
+            Assert.AreEqual(1, numberOfReviews);
         }
 
         //2
@@ -48,10 +49,8 @@ namespace SdmTest
         public void GetAverageRatingForReviewerN_validAverage()
         {
             double averageRating = sdmLib.GetAverageRatingForReviewerN(1);
-
-            Assert.IsNotNull(averageRating);
-
-            Console.WriteLine(averageRating);
+            
+            Assert.AreEqual(3, averageRating);
         }
 
         //3
@@ -60,9 +59,7 @@ namespace SdmTest
         {
             int numberOfGradeGForReviewerN = sdmLib.GetNumberOfGradeGForReviewerN(1, 3);
 
-            Assert.IsNotNull(numberOfGradeGForReviewerN);
-
-            Console.WriteLine(numberOfGradeGForReviewerN);
+            Assert.AreEqual(1, numberOfGradeGForReviewerN);
         }
 
         //4
@@ -71,9 +68,7 @@ namespace SdmTest
         {
             int numberOfReviews = sdmLib.NumberOfReviewsForMovieN(1488844);
 
-            Assert.IsNotNull(numberOfReviews);
-
-            Console.WriteLine(numberOfReviews);
+            Assert.AreEqual(1, numberOfReviews);
         }
 
         //5
@@ -82,9 +77,7 @@ namespace SdmTest
         {
             double averageRatingForMovieN = sdmLib.AverageRatingForMovieN(1488844);
 
-            Assert.IsNotNull(averageRatingForMovieN);
-
-            Console.WriteLine(averageRatingForMovieN);
+            Assert.AreEqual(3, averageRatingForMovieN);
         }
 
     }
