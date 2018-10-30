@@ -10,6 +10,12 @@ namespace sdm_movie_rating
     public class SdmLib : ISdmLib
     {
         public IEnumerable<MovieRating> List;
+        //Key=Reviewer  Value=MovieRating as List<MovieRating>
+        public Dictionary<int, List<MovieRating>> ReviewerMovieRatings = new Dictionary<int, List<MovieRating>>();
+        //Key=Reviewer  Value=Review as List<int>
+        public Dictionary<int, List<int>> ReviewerReviews = new Dictionary<int, List<int>>();
+        //Key=Movie  Value=Review as List<int>
+        public Dictionary<int, List<int>> MovieReviews = new Dictionary<int, List<int>>();
 
         public SdmLib(string filepath)
         {
