@@ -15,19 +15,20 @@ namespace SdmTest
         private static string testString = "[{ Reviewer:1, Movie:1488844, Grade:3, Date:'2005-09-06'}]";
         private StringReader testReader = new StringReader(testString);
 
-        SdmLib sdmLib = new SdmLib("ratings.json");
+        SdmLib sdmLib;
+
+        public SdmTest()
+        {
+            sdmLib = new SdmLib(testReader);
+        }
 
         [TestMethod]
         public void PreliminaryTest()
         {
-           // int x = 1488844;
-            int x = 822109;
+            int x = 1488844;
 
-
-            // Assert.IsNotNull(sdmLib.List.ElementAt(0));
-
-            //Movie id at element 1 = 822109
-            Assert.AreEqual(sdmLib.List.ElementAt(1).Movie, x);
+            //Movie id at element 0 = 1488844
+            Assert.AreEqual(sdmLib.List.ElementAt(0).Movie, x);
 
         }
 
@@ -35,7 +36,7 @@ namespace SdmTest
         [TestMethod]
         public void NumberOfReviewsFromNReviewer_validReviewNumber()
         {
-            int numberOfReviews = sdmLib.NumberOfReviewsFromNReviewer(10);
+            int numberOfReviews = sdmLib.NumberOfReviewsFromNReviewer(1);
 
             Assert.IsNotNull(numberOfReviews);
 
@@ -46,7 +47,7 @@ namespace SdmTest
         [TestMethod]
         public void GetAverageRatingForReviewerN_validAverage()
         {
-            double averageRating = sdmLib.GetAverageRatingForReviewerN(10);
+            double averageRating = sdmLib.GetAverageRatingForReviewerN(1);
 
             Assert.IsNotNull(averageRating);
 
@@ -57,7 +58,7 @@ namespace SdmTest
         [TestMethod]
         public void GetNumberOfGradeGForReviewerN_validateNumber()
         {
-            int numberOfGradeGForReviewerN = sdmLib.GetNumberOfGradeGForReviewerN(10, 5);
+            int numberOfGradeGForReviewerN = sdmLib.GetNumberOfGradeGForReviewerN(1, 3);
 
             Assert.IsNotNull(numberOfGradeGForReviewerN);
 
@@ -68,7 +69,7 @@ namespace SdmTest
         [TestMethod]
         public void numberOfReviewsForMovieN()
         {
-            int numberOfReviews = sdmLib.NumberOfReviewsForMovieN(1567202);
+            int numberOfReviews = sdmLib.NumberOfReviewsForMovieN(1488844);
 
             Assert.IsNotNull(numberOfReviews);
 
@@ -79,7 +80,7 @@ namespace SdmTest
         [TestMethod]
         public void AverageRatingForMovieN_validNumber()
         {
-            double averageRatingForMovieN = sdmLib.AverageRatingForMovieN(1567202);
+            double averageRatingForMovieN = sdmLib.AverageRatingForMovieN(1488844);
 
             Assert.IsNotNull(averageRatingForMovieN);
 

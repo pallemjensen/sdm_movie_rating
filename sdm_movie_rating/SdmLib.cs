@@ -17,18 +17,18 @@ namespace sdm_movie_rating
         //Key=Movie  Value=Review as List<int>
         public Dictionary<int, List<int>> MovieReviews = new Dictionary<int, List<int>>();
 
-        public SdmLib(string filepath)
+        public SdmLib(TextReader reader)
         {
-            LoadJson(filepath);
+            LoadJson(reader);
+            fillDictionaries();
         }
 
-        public void LoadJson(String filepath)
+        public void LoadJson(TextReader reader)
         {
-            using (StreamReader r = new StreamReader(filepath))
+            using (reader)
             {
-               string json = r.ReadToEnd();
+               string json = reader.ReadToEnd();
                List = JsonConvert.DeserializeObject<List<MovieRating>>(json);
-               fillDictionaries();
             }
         }
 
@@ -207,6 +207,11 @@ namespace sdm_movie_rating
 
         //11
         public List<int> GetReviewersWhoReviewedMovieNWithRateDecreasingDateIncreasing(int movie)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int NumberOfReviewsFromN(int reviewer)
         {
             throw new NotImplementedException();
         }
