@@ -17,16 +17,14 @@ namespace SdmTest
 
         public SdmTest()
         {
-            sw.Start();
             sdmLib = new SdmLib(jsonFilePath);
-            sw.Stop();
-            Console.WriteLine("MilliSeconds elapsed: " + sw.ElapsedMilliseconds);
+            //Console.WriteLine("TotalMilliSeconds elapsed: " + sw.Elapsed.TotalMilliseconds);
         }
         
         [TestMethod]
         public void PreliminaryTest()
         {
-            sw.Restart();
+            sw.Start();
             // int x = 1488844;
             int x = 822109;
             // Number of entries in specific json file
@@ -38,8 +36,9 @@ namespace SdmTest
             Assert.AreEqual(sdmLib.List.ElementAt(1).Movie, x);
             //Number of entries = 5009439
             Assert.AreEqual(numOfEntries, sdmLib.List.LongCount());
-            sw.Stop();
-            Console.WriteLine("MilliSeconds elapsed: " + sw.ElapsedMilliseconds);
+            //sw.Stop();
+            Console.WriteLine("TotalMilliSeconds elapsed: " + sw.Elapsed.TotalMilliseconds);
+            //sw.Reset();
         }
         
         
@@ -47,49 +46,48 @@ namespace SdmTest
         [TestMethod]
         public void NumberOfReviewsFromNReviewer_validReviewNumber()
         {
-            sw.Start();
+            //sw.Start();
             int numberOfReviews = sdmLib.NumberOfReviewsFromNReviewer(9);
 
             Assert.IsNotNull(numberOfReviews);
             
             Console.WriteLine(numberOfReviews);
             //Console.WriteLine(sdmLib.NumberOfReviewsFromNReviewer(11));
-            sw.Stop();
-            Console.WriteLine("MilliSeconds elapsed: "+sw.ElapsedMilliseconds);
+            //sw.Stop();
+            Console.WriteLine("TotalMilliSeconds elapsed: " + sw.Elapsed.TotalMilliseconds);
+            //sw.Reset();
         }
         
         //2
         [TestMethod]
         public void GetAverageRatingForReviewerN_validAverage()
         {
-            sw.Reset();
-            sw.Start();
+            //sw.Start();
             double averageRating = sdmLib.GetAverageRatingForReviewerN(9);
 
             Assert.IsNotNull(averageRating);
             Console.WriteLine(averageRating);
-            
-            Console.WriteLine(averageRating);
-
+            /*
             for (int i = 1; i < 101; i++)
             {
                 Console.WriteLine("Average rating for reviewer"+ i +" = "+sdmLib.GetAverageRatingForReviewerN(i));
             }
-            
-            sw.Stop();
-            Console.WriteLine("MilliSeconds elapsed: "+ sw.ElapsedMilliseconds);
+            */
+            //sw.Stop();
+            Console.WriteLine("TotalMilliSeconds elapsed: " + sw.Elapsed.TotalMilliseconds);
+            //sw.Reset();
         }
         
         //3
         [TestMethod]
         public void GetNumberOfGradeGForReviewerN_validateNumber()
         {
-            sw.Restart();
+            //sw.Start();
             int numberOfGradeGForReviewerN = sdmLib.GetNumberOfGradeGForReviewerN(10, 5);
 
             Assert.IsNotNull(numberOfGradeGForReviewerN);
             Console.WriteLine(numberOfGradeGForReviewerN);
-
+            /*
             for (int j = 10; j < 20; j++)
             {
                 for (int i = 0; i < 6; i++)
@@ -98,19 +96,24 @@ namespace SdmTest
                     Console.WriteLine(sdmLib.GetNumberOfGradeGForReviewerN(j, i));
                 }
             }
-            sw.Stop();
-            Console.WriteLine("MilliSeconds elapsed: "+ sw.ElapsedMilliseconds);
+            */
+            //sw.Stop();
+            Console.WriteLine("TotalMilliSeconds elapsed: " + sw.Elapsed.TotalMilliseconds);
+            //sw.Reset();
         }
         
         //4
         [TestMethod]
         public void numberOfReviewsForMovieN()
         {
+            //sw.Start();
             int numberOfReviews = sdmLib.NumberOfReviewsForMovieN(1567202);
 
             Assert.IsNotNull(numberOfReviews);
-
             Console.WriteLine(numberOfReviews);
+            //sw.Stop();
+            Console.WriteLine("TotalMilliSeconds elapsed: " + sw.Elapsed.TotalMilliseconds);
+            //sw.Reset();
         }
         /*
         //5
