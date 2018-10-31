@@ -82,9 +82,6 @@ namespace sdm_movie_rating
             }
 
             return 0;
-
-            //var numberOfReviews = (from list in List where list.Reviewer == reviewer select list.Movie).Count();
-            //return numberOfReviews;
         }
 
         //2
@@ -96,92 +93,53 @@ namespace sdm_movie_rating
             }
 
             return 0;
-
-            //double averageRating = 0;
-
-            ////can be int, but resharper is annoyed
-            //double cumulativeRating = 0;
-
-            //int x = List.Count();
-
-            //int y = 0;
-
-            //for (int i = 0; i < x; i++)
-            //{
-            //    if (List.ElementAt(i).Reviewer == reviewer)
-            //    {
-            //      y++;
-            //      cumulativeRating  = cumulativeRating + List.ElementAt(i).Grade;
-            //    }
-
-            //}
-            //averageRating = cumulativeRating / y;
-
-            //return averageRating;
         }
 
         //3
         public int GetNumberOfGradeGForReviewerN(int reviewer, int grade)
         {
-           int result = 0;
-           int x = List.Count();
- 
-            for (int i = 0; i < x; i++)
+            //New Dictionary method
+            if (ReviewerReviews.ContainsKey(reviewer))
             {
-                if (List.ElementAt(i).Reviewer == reviewer && List.ElementAt(i).Grade == grade)
-                {
-                    result++;                  
-                }
+                List<int> number = ReviewerReviews[reviewer].FindAll(v => v == grade);
+                return number.Count;
             }
-            return result;
+
+            return 0;
         }
 
         //4
         public int NumberOfReviewsForMovieN(int movie)
         {
-            int numberOfReviews = 0;
-
-            int x = List.Count();
-
-            for (int i = 0; i < x; i++)
+            if (MovieReviews.ContainsKey(movie))
             {
-                if (List.ElementAt(i).Movie == movie)
-                {
-                    numberOfReviews++;
-                }
+                return MovieReviews[movie].Count;
             }
-            return numberOfReviews;
+
+            return 0;
         }
 
         //5
         public double AverageRatingForMovieN(int movie)
         {
-            double cumulativeMovieRating = 0;
-
-            int x = List.Count();
-
-            int y = 0;
-
-            double averageMovieRating = 0;
-
-            for (int i = 0; i < x; i++)
+            if (MovieReviews.ContainsKey(movie))
             {
-                if (List.ElementAt(i).Movie == movie)
-                {
-                    y++;
-                    cumulativeMovieRating = cumulativeMovieRating + List.ElementAt(i).Grade;
-                }
+                return MovieReviews[movie].Average();
             }
 
-            averageMovieRating = cumulativeMovieRating / y;
-
-            return averageMovieRating;
+            return 0;
         }
 
         //6
         public int NumberOfGradeGForMovieN(int grade, int movie)
         {
-            throw new NotImplementedException();
+            if (MovieReviews.ContainsKey(movie))
+            {
+                List<int> number = MovieReviews[movie].FindAll(v => v == grade);
+                return number.Count;
+            }
+
+            return 0;
         }
 
         //7

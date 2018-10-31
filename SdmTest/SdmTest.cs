@@ -130,7 +130,7 @@ namespace SdmTest
 
             Assert.AreEqual(averageRatingForMovie11, sdmLib.AverageRatingForMovieN(11));
             Assert.AreEqual(averageRatingForMovie77, sdmLib.AverageRatingForMovieN(77));
-            //Assert.AreEqual(averageRatingForMovie707, sdmLib.AverageRatingForMovieN(707));
+            Assert.AreEqual(averageRatingForMovie707, sdmLib.AverageRatingForMovieN(707));
         }
 
         //6
@@ -138,14 +138,14 @@ namespace SdmTest
         public void NumberOfGradeGForMovieN()
         {
             int NumberOfGrade4ForMovie33 = 5;
-            int NumberOfGrade2ForMovie55 = 2;
+            int NumberOfGrade3ForMovie55 = 2;
             int NumberOfGrade2ForMovie11 = 0;
             int NumberOfGrade2ForMovie101 = 0;
 
-            //Assert.AreEqual(NumberOfGrade4ForMovie33, sdmLib.NumberOfGradeGForMovieN(4, 33));
-            //Assert.AreEqual(NumberOfGrade2ForMovie55, sdmLib.NumberOfGradeGForMovieN(2, 55));
-            //Assert.AreEqual(NumberOfGrade2ForMovie11, sdmLib.NumberOfGradeGForMovieN(2, 11));
-            //Assert.AreEqual(NumberOfGrade2ForMovie101, sdmLib.NumberOfGradeGForMovieN(2, 101));
+            Assert.AreEqual(NumberOfGrade4ForMovie33, sdmLib.NumberOfGradeGForMovieN(4, 33));
+            Assert.AreEqual(NumberOfGrade3ForMovie55, sdmLib.NumberOfGradeGForMovieN(3, 55));
+            Assert.AreEqual(NumberOfGrade2ForMovie11, sdmLib.NumberOfGradeGForMovieN(2, 11));
+            Assert.AreEqual(NumberOfGrade2ForMovie101, sdmLib.NumberOfGradeGForMovieN(2, 101));
 
         }
 
