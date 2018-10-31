@@ -74,47 +74,50 @@ namespace sdm_movie_rating
         }
 
         //1
-        public int NumberOfReviewsFromNReviewer(int reviewer)
+        public int NumberOfReviewsFromN(int reviewer)
         {
-            //int numberOfReviews = 0;
+            if (ReviewerReviews.ContainsKey(reviewer))
+            {
+                return ReviewerReviews[reviewer].Count;
+            }
 
-            //int x = List.Count();
+            return 0;
 
-            //    for (int i = 0; i < x; i++)
-            //    {
-            //        if (List.ElementAt(i).Reviewer == reviewer)
-            //        {
-            //            numberOfReviews++;
-            //        }
-            //    }
-            var numberOfReviews = (from list in List where list.Reviewer == reviewer select list.Movie).Count();
-            return numberOfReviews;
+            //var numberOfReviews = (from list in List where list.Reviewer == reviewer select list.Movie).Count();
+            //return numberOfReviews;
         }
 
         //2
         public double GetAverageRatingForReviewerN(int reviewer)
         {
-            double averageRating = 0;
-
-            //can be int, but resharper is annoyed
-            double cumulativeRating = 0;
-
-            int x = List.Count();
-
-            int y = 0;
-
-            for (int i = 0; i < x; i++)
+            if (ReviewerReviews.ContainsKey(reviewer))
             {
-                if (List.ElementAt(i).Reviewer == reviewer)
-                {
-                  y++;
-                  cumulativeRating  = cumulativeRating + List.ElementAt(i).Grade;
-                }
-
+                return ReviewerReviews[reviewer].Average();
             }
-            averageRating = cumulativeRating / y;
 
-            return averageRating;
+            return 0;
+
+            //double averageRating = 0;
+
+            ////can be int, but resharper is annoyed
+            //double cumulativeRating = 0;
+
+            //int x = List.Count();
+
+            //int y = 0;
+
+            //for (int i = 0; i < x; i++)
+            //{
+            //    if (List.ElementAt(i).Reviewer == reviewer)
+            //    {
+            //      y++;
+            //      cumulativeRating  = cumulativeRating + List.ElementAt(i).Grade;
+            //    }
+
+            //}
+            //averageRating = cumulativeRating / y;
+
+            //return averageRating;
         }
 
         //3
@@ -210,10 +213,6 @@ namespace sdm_movie_rating
         {
             throw new NotImplementedException();
         }
-
-        public int NumberOfReviewsFromN(int reviewer)
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }

@@ -10,28 +10,44 @@ namespace SdmTest
     public class SdmTest
     {
         //For use in integration tests
-        // FilePath must be changed for different users!!!
+        // FilePath must be changed for different file locations!!!
         private static readonly string jsonFilePath = "C:\\Users\\Bruger\\ThirdSemester\\sdm_movie_rating\\ratings.json";
         private StreamReader r = new StreamReader(jsonFilePath);
 
         //For use in unit tests
         private static string testString = "[" +
-                                           "{ Reviewer:1, Movie:1488844, Grade:3, Date:'2005-09-06'}," +
-                                           "{ Reviewer:1, Movie:822109, Grade:5, Date:'2005-05-13'}," +
-                                           "{ Reviewer:1, Movie:885013, Grade:4, Date:'2005-10-19'}," +
-                                           "{ Reviewer:1, Movie:30878, Grade:4, Date:'2005-12-26'}," +
-                                           "{ Reviewer:2, Movie:1488844, Grade:4, Date:'2005-09-05'}," +
-                                           "{ Reviewer:2, Movie:1666394, Grade:3, Date:'2005-04-19'}," +
-                                           "{ Reviewer:2, Movie:1759415, Grade:4, Date:'2005-04-22'}," +
-                                           "{ Reviewer:2, Movie:1959936, Grade:5, Date:'2005-11-21'}," +
-                                           "{ Reviewer:2, Movie:998862, Grade:4, Date:'2004-11-13'}," +
-                                           "{ Reviewer:3, Movie:1488844, Grade:5, Date:'2004-04-12'}," +
-                                           "{ Reviewer:3, Movie:2302997, Grade:4, Date:'2005-07-18'}," +
-                                           "{ Reviewer:3, Movie:987085, Grade:4, Date:'2004-04-06'}," +
-                                           "{ Reviewer:3, Movie:889134, Grade:4, Date:'2005-07-19'}," +
-                                           "{ Reviewer:3, Movie:1904387, Grade:4, Date:'2005-07-19'}," +
-                                           "{ Reviewer:3, Movie:1600392, Grade:2, Date:'2004-06-16'}" +
+                                           "{ Reviewer:1, Movie:11, Grade:3, Date:'2005-09-06'}," +
+                                           "{ Reviewer:1, Movie:22, Grade:5, Date:'2005-05-13'}," +
+                                           "{ Reviewer:1, Movie:33, Grade:4, Date:'2005-10-19'}," +
+                                           "{ Reviewer:1, Movie:44, Grade:4, Date:'2005-12-26'}," +
+                                           "{ Reviewer:2, Movie:11, Grade:4, Date:'2005-09-05'}," +
+                                           "{ Reviewer:2, Movie:22, Grade:3, Date:'2005-04-19'}," +
+                                           "{ Reviewer:2, Movie:33, Grade:4, Date:'2005-04-22'}," +
+                                           "{ Reviewer:2, Movie:44, Grade:5, Date:'2005-11-21'}," +
+                                           "{ Reviewer:2, Movie:55, Grade:3, Date:'2004-11-13'}," +
+                                           "{ Reviewer:3, Movie:11, Grade:5, Date:'2004-04-12'}," +
+                                           "{ Reviewer:3, Movie:22, Grade:4, Date:'2005-07-18'}," +
+                                           "{ Reviewer:3, Movie:33, Grade:4, Date:'2004-04-06'}," +
+                                           "{ Reviewer:3, Movie:44, Grade:4, Date:'2005-07-19'}," +
+                                           "{ Reviewer:3, Movie:55, Grade:3, Date:'2005-07-19'}," +
+                                           "{ Reviewer:3, Movie:66, Grade:2, Date:'2004-06-16'}," +
+                                           "{ Reviewer:4, Movie:11, Grade:3, Date:'2004-04-12'}," +
+                                           "{ Reviewer:4, Movie:22, Grade:4, Date:'2005-07-18'}," +
+                                           "{ Reviewer:4, Movie:33, Grade:4, Date:'2004-04-06'}," +
+                                           "{ Reviewer:4, Movie:44, Grade:4, Date:'2005-07-19'}," +
+                                           "{ Reviewer:4, Movie:55, Grade:4, Date:'2005-07-19'}," +
+                                           "{ Reviewer:4, Movie:66, Grade:2, Date:'2004-06-16'}," +
+                                           "{ Reviewer:4, Movie:77, Grade:3, Date:'2004-11-13'}," +
+                                           "{ Reviewer:5, Movie:11, Grade:4, Date:'2004-04-12'}," +
+                                           "{ Reviewer:5, Movie:22, Grade:4, Date:'2005-07-18'}," +
+                                           "{ Reviewer:5, Movie:33, Grade:4, Date:'2004-04-06'}," +
+                                           "{ Reviewer:5, Movie:44, Grade:3, Date:'2005-07-19'}," +
+                                           "{ Reviewer:5, Movie:55, Grade:4, Date:'2005-07-19'}," +
+                                           "{ Reviewer:5, Movie:66, Grade:1, Date:'2004-06-16'}," +
+                                           "{ Reviewer:5, Movie:77, Grade:2, Date:'2004-11-13'}," +
+                                           "{ Reviewer:5, Movie:88, Grade:3, Date:'2004-11-13'}," +
                                            "]";
+
         private StringReader testReader = new StringReader(testString);
 
         SdmLib sdmLib;
@@ -44,9 +60,9 @@ namespace SdmTest
         [TestMethod]
         public void PreliminaryTest()
         {
-            int numEntries = 15;//4+5+6=15
+            int numEntries = 30;//4+5+6+7+8=30
 
-            //number of entries in test data = 15
+            //number of entries in test data = 30
             Assert.AreEqual(numEntries, sdmLib.List.Count());
 
         }
@@ -57,9 +73,11 @@ namespace SdmTest
         {
             int ReviewsFromReviewer1 = 4;
             int ReviewsFromReviewer3 = 6;
+            int ReviewsFromReviewer10 = 0;
 
-            Assert.AreEqual(ReviewsFromReviewer1, sdmLib.NumberOfReviewsFromNReviewer(1));
-            Assert.AreEqual(ReviewsFromReviewer3, sdmLib.NumberOfReviewsFromNReviewer(3));
+            Assert.AreEqual(ReviewsFromReviewer1, sdmLib.NumberOfReviewsFromN(1));
+            Assert.AreEqual(ReviewsFromReviewer3, sdmLib.NumberOfReviewsFromN(3));
+            Assert.AreEqual(ReviewsFromReviewer10, sdmLib.NumberOfReviewsFromN(10));
         }
 
         //2
@@ -67,8 +85,13 @@ namespace SdmTest
         public void GetAverageRatingForReviewerN_validAverage()
         {
             double averageRatingForReviewer1 = 4;
-            
+            double averageRatingForReviewer5 = 3.125;
+            double averageRatingForReviewer10 = 0;
+
             Assert.AreEqual(averageRatingForReviewer1, sdmLib.GetAverageRatingForReviewerN(1));
+            Assert.AreEqual(averageRatingForReviewer5, sdmLib.GetAverageRatingForReviewerN(5));
+            Assert.AreEqual(averageRatingForReviewer10, sdmLib.GetAverageRatingForReviewerN(10));
+
         }
 
         //3
@@ -76,26 +99,89 @@ namespace SdmTest
         public void GetNumberOfGradeGForReviewerN_validateNumber()
         {
             int numberOfGrade4ForReviewer1 = 2;
+            int numberOfGrade4ForReviewer4 = 4;
+            int numberOfGrade1ForReviewer2 = 0;
 
             Assert.AreEqual(numberOfGrade4ForReviewer1, sdmLib.GetNumberOfGradeGForReviewerN(1, 4));
+            Assert.AreEqual(numberOfGrade4ForReviewer4, sdmLib.GetNumberOfGradeGForReviewerN(4, 4));
+            Assert.AreEqual(numberOfGrade1ForReviewer2, sdmLib.GetNumberOfGradeGForReviewerN(2, 1));
         }
 
         //4
         [TestMethod]
         public void numberOfReviewsForMovieN()
         {
-            int numberOfReviewsForMovie1488844 = 3;
+            int numberOfReviewsForMovie11 = 5;
+            int numberOfReviewsForMovie77 = 2;
+            int numberOfReviewsForMovie101 = 0;
 
-            Assert.AreEqual(numberOfReviewsForMovie1488844, sdmLib.NumberOfReviewsForMovieN(1488844));
+            Assert.AreEqual(numberOfReviewsForMovie11, sdmLib.NumberOfReviewsForMovieN(11));
+            Assert.AreEqual(numberOfReviewsForMovie77, sdmLib.NumberOfReviewsForMovieN(77));
+            Assert.AreEqual(numberOfReviewsForMovie101, sdmLib.NumberOfReviewsForMovieN(101));
         }
 
         //5
         [TestMethod]
         public void AverageRatingForMovieN_validNumber()
         {
-            double averageRatingForMovie1488844 = 4;
+            double averageRatingForMovie11 = 3.8;
+            double averageRatingForMovie77 = 2.5;
+            double averageRatingForMovie707 = 0;
 
-            Assert.AreEqual(averageRatingForMovie1488844, sdmLib.AverageRatingForMovieN(1488844));
+            Assert.AreEqual(averageRatingForMovie11, sdmLib.AverageRatingForMovieN(11));
+            Assert.AreEqual(averageRatingForMovie77, sdmLib.AverageRatingForMovieN(77));
+            //Assert.AreEqual(averageRatingForMovie707, sdmLib.AverageRatingForMovieN(707));
+        }
+
+        //6
+        [TestMethod]
+        public void NumberOfGradeGForMovieN()
+        {
+            int NumberOfGrade4ForMovie33 = 5;
+            int NumberOfGrade2ForMovie55 = 2;
+            int NumberOfGrade2ForMovie11 = 0;
+            int NumberOfGrade2ForMovie101 = 0;
+
+            //Assert.AreEqual(NumberOfGrade4ForMovie33, sdmLib.NumberOfGradeGForMovieN(4, 33));
+            //Assert.AreEqual(NumberOfGrade2ForMovie55, sdmLib.NumberOfGradeGForMovieN(2, 55));
+            //Assert.AreEqual(NumberOfGrade2ForMovie11, sdmLib.NumberOfGradeGForMovieN(2, 11));
+            //Assert.AreEqual(NumberOfGrade2ForMovie101, sdmLib.NumberOfGradeGForMovieN(2, 101));
+
+        }
+
+        //7
+        [TestMethod]
+        public void IdsForMoviesWithTopRates()
+        {
+            
+        }
+
+        //8
+        [TestMethod]
+        public void ReviewersWithMostReviews()
+        {
+            
+        }
+
+        //9
+        [TestMethod]
+        public void GetTopMovieIdsFromNNumberOfMovies()
+        {
+            
+        }
+
+        //10
+        [TestMethod]
+        public void GetMoviesReviewedByNWithRateDecreasingDateIncreasing()
+        {
+            
+        }
+
+        //11
+        [TestMethod]
+        public void GetReviewersWhoReviewedMovieNWithRateDecreasingDateIncreasing()
+        {
+            
         }
 
     }
