@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -110,7 +109,7 @@ namespace SdmTest
 
         //4
         [TestMethod]
-        public void numberOfReviewsForMovieN()
+        public void NumberOfReviewsForMovieN()
         {
             int numberOfReviewsForMovie11 = 5;
             int numberOfReviewsForMovie77 = 2;
@@ -162,7 +161,8 @@ namespace SdmTest
         [TestMethod]
         public void ReviewersWithMostReviews()
         {
-            
+            List<int> result = sdmLib.ReviewersWithMostReviews();
+            Assert.IsTrue(result.Count == 1);
         }
 
         //9

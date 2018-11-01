@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -9,7 +10,7 @@ namespace SdmPerformanceTest
     public class SdmPerformanceTest
     {
 
-        private static readonly string jsonFilePath = "/Users/morten/Documents/GitHub/sdm_movie_rating/sdm_movie_rating/ratings.json";
+        private static readonly string jsonFilePath = "C:\\Users\\pmj\\Dropbox\\Studie\\3. semester\\software development methodologies\\MovieRatingDev\\sdm_movie_rating\\SdmTest\\obj\\Debug\\netcoreapp2.1\\ratings.json";
 
         private StreamReader r = new StreamReader(jsonFilePath);
 
@@ -122,13 +123,29 @@ namespace SdmPerformanceTest
 
 
             sw.Start();
-            double result = sdmLib.IdsForMoviesWithTopRates()
+            List<int> result = sdmLib.IdsForMoviesWithTopRates();
 
             sw.Stop();
 
             Assert.IsTrue(sw.ElapsedMilliseconds < 4000);
         }
-       
+
+        //8
+        [TestMethod]
+        public void ReviewersWithMostReviews()
+        {
+            Stopwatch sw = new Stopwatch();
+
+
+            sw.Start();
+
+            List<int> result = sdmLib.ReviewersWithMostReviews();
+
+            sw.Stop();
+
+            Assert.IsTrue(sw.ElapsedMilliseconds < 4000);
+        }
+
 
 
     }

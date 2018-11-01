@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using Newtonsoft.Json;
 
 namespace sdm_movie_rating 
@@ -20,7 +19,7 @@ namespace sdm_movie_rating
         public SdmLib(TextReader reader)
         {
             LoadJson(reader);
-            fillDictionaries();
+            FillDictionaries();
         }
 
         public void LoadJson(TextReader reader)
@@ -32,7 +31,7 @@ namespace sdm_movie_rating
             }
         }
 
-        private void fillDictionaries()
+        private void FillDictionaries()
         {
             foreach (MovieRating mr in ListOfMovieRatings)
             {
@@ -155,7 +154,9 @@ namespace sdm_movie_rating
         //8
         public List<int> ReviewersWithMostReviews()
         {
-            throw new NotImplementedException();
+            int maxValue = ListOfMovieRatings.GroupBy(r => r.Reviewer).Max(r => r.Count());
+
+            return ListOfMovieRatings.GroupBy(r => r.Reviewer).Where(r => r.Count() == maxValue).Select(r => r.Key).ToList();
         }
 
         //9
