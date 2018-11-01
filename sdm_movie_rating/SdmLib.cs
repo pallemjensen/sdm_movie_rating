@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -175,9 +176,7 @@ namespace sdm_movie_rating
         //11
         public List<int> GetReviewersWhoReviewedMovieNWithRateDecreasingDateIncreasing(int movie)
         {
-            throw new NotImplementedException();
-        }
-
-       
+           return ListOfMovieRatings.Where(r => r.Movie == movie).OrderByDescending(r => r.Grade).ThenBy(r => r.Date).Select(r => r.Reviewer).ToList();
+        }  
     }
 }

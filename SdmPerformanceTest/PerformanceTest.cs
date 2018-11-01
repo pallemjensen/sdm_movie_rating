@@ -175,5 +175,18 @@ namespace SdmPerformanceTest
 
             Assert.IsTrue(sw.ElapsedMilliseconds < 4000);
         }
+
+        //11
+        [TestMethod]
+        public void GetReviewersWhoReviewedMovieNWithRateDecreasingDateIncreasing()
+        {
+            var sw = new Stopwatch();
+            sw.Start();
+            var result = sdmLib.GetReviewersWhoReviewedMovieNWithRateDecreasingDateIncreasing(1488844);
+
+            sw.Stop();
+
+            Assert.IsTrue(sw.ElapsedMilliseconds < 4000);
+        }
     }
 }

@@ -192,7 +192,13 @@ namespace SdmTest
         [TestMethod]
         public void GetReviewersWhoReviewedMovieNWithRateDecreasingDateIncreasing()
         {
-            
+            List<int> result = sdmLib.GetReviewersWhoReviewedMovieNWithRateDecreasingDateIncreasing(11);
+            Assert.AreEqual(5, result.Count);
+
+            foreach (var v in result)
+            {
+                Console.WriteLine("Reviewer id: " + v);
+            }
         }
 
     }
