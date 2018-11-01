@@ -146,7 +146,21 @@ namespace SdmPerformanceTest
             Assert.IsTrue(sw.ElapsedMilliseconds < 4000);
         }
 
+        //9
+        [TestMethod]
+        public void GetTopMovieIdsFromNNumberOfMovies()
+        {
+            Stopwatch sw = new Stopwatch();
 
+
+            sw.Start();
+
+            List<int> result = sdmLib.GetTopMovieIdsFromNNumberOfMovies(3);
+
+            sw.Stop();
+
+            Assert.IsTrue(sw.ElapsedMilliseconds < 4000);
+        }
 
     }
 }
