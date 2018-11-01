@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -9,13 +8,17 @@ namespace SdmPerformanceTest
     [TestClass]
     public class SdmPerformanceTest
     {
+        //Palle
+        private static readonly string jsonFilePath =
+            "C:\\Users\\pmj\\Dropbox\\Studie\\3. semester\\software development methodologies\\MovieRatingDev\\sdm_movie_rating\\SdmTest\\obj\\Debug\\netcoreapp2.1\\ratings.json";
+        //Sven
+        //private static readonly string jsonFilePath = "C:\\Users\\Bruger\\ThirdSemester\\sdm_movie_rating\\ratings.json";
 
-        private static readonly string jsonFilePath = "C:\\Users\\pmj\\Dropbox\\Studie\\3. semester\\software development methodologies\\MovieRatingDev\\sdm_movie_rating\\SdmTest\\obj\\Debug\\netcoreapp2.1\\ratings.json";
 
-        private StreamReader r = new StreamReader(jsonFilePath);
+        private readonly StreamReader r = new StreamReader(jsonFilePath);
 
 
-        SdmLib sdmLib;
+        private readonly SdmLib sdmLib;
 
         public SdmPerformanceTest()
         {
@@ -26,43 +29,41 @@ namespace SdmPerformanceTest
         [TestMethod]
         public void NumberOfReviewsFromNReviewer_validReviewNumber()
         {
-            Stopwatch sw = new Stopwatch();
+            var sw = new Stopwatch();
 
 
             sw.Start();
-            int result = sdmLib.NumberOfReviewsFromN(10);
+            var result = sdmLib.NumberOfReviewsFromN(10);
 
             sw.Stop();
 
             Assert.IsTrue(sw.ElapsedMilliseconds < 4000);
-
         }
 
         //2
         [TestMethod]
         public void GetAverageRatingForReviewerN_validAverage()
         {
-            Stopwatch sw = new Stopwatch();
+            var sw = new Stopwatch();
 
 
             sw.Start();
-            double result = sdmLib.GetAverageRatingForReviewerN(10);
+            var result = sdmLib.GetAverageRatingForReviewerN(10);
 
             sw.Stop();
 
             Assert.IsTrue(sw.ElapsedMilliseconds < 4000);
-
         }
 
         //3
         [TestMethod]
         public void GetNumberOfGradeGForReviewerN_validateNumber()
         {
-            Stopwatch sw = new Stopwatch();
+            var sw = new Stopwatch();
 
 
             sw.Start();
-            int result = sdmLib.GetNumberOfGradeGForReviewerN(10,5);
+            var result = sdmLib.GetNumberOfGradeGForReviewerN(10, 5);
 
             sw.Stop();
 
@@ -74,11 +75,11 @@ namespace SdmPerformanceTest
         [TestMethod]
         public void numberOfReviewsForMovieN()
         {
-            Stopwatch sw = new Stopwatch();
+            var sw = new Stopwatch();
 
 
             sw.Start();
-            int result = sdmLib.NumberOfReviewsFromN(1488844);
+            var result = sdmLib.NumberOfReviewsFromN(1488844);
 
             sw.Stop();
 
@@ -89,11 +90,11 @@ namespace SdmPerformanceTest
         [TestMethod]
         public void AverageRatingForMovieN_validNumber()
         {
-            Stopwatch sw = new Stopwatch();
+            var sw = new Stopwatch();
 
 
             sw.Start();
-            double result = sdmLib.AverageRatingForMovieN(1488844);
+            var result = sdmLib.AverageRatingForMovieN(1488844);
 
             sw.Stop();
 
@@ -104,7 +105,7 @@ namespace SdmPerformanceTest
         [TestMethod]
         public void NumberOfGradeGForMovieN()
         {
-            Stopwatch sw = new Stopwatch();
+            var sw = new Stopwatch();
 
 
             sw.Start();
@@ -119,11 +120,11 @@ namespace SdmPerformanceTest
         [TestMethod]
         public void IdsForMoviesWithTopRates()
         {
-            Stopwatch sw = new Stopwatch();
+            var sw = new Stopwatch();
 
 
             sw.Start();
-            List<int> result = sdmLib.IdsForMoviesWithTopRates();
+            var result = sdmLib.IdsForMoviesWithTopRates();
 
             sw.Stop();
 
@@ -134,13 +135,29 @@ namespace SdmPerformanceTest
         [TestMethod]
         public void ReviewersWithMostReviews()
         {
-            Stopwatch sw = new Stopwatch();
+            var sw = new Stopwatch();
 
 
             sw.Start();
 
-            List<int> result = sdmLib.ReviewersWithMostReviews();
+            var result = sdmLib.ReviewersWithMostReviews();
 
+            sw.Stop();
+
+            Assert.IsTrue(sw.ElapsedMilliseconds < 4000);
+        }
+
+
+        //9
+        [TestMethod]
+        public void GetTopMovieIdsFromNNumberOfMovies()
+        {
+            var sw = new Stopwatch();
+
+
+            sw.Start();
+
+            var result = sdmLib.GetTopMovieIdsFromNNumberOfMovies(3);
             sw.Stop();
 
             Assert.IsTrue(sw.ElapsedMilliseconds < 4000);
@@ -150,17 +167,13 @@ namespace SdmPerformanceTest
         [TestMethod]
         public void GetMoviesReviewedByNWithRateDecreasingDateIncreasing()
         {
-            Stopwatch sw = new Stopwatch();
-
-
+            var sw = new Stopwatch();
             sw.Start();
-
-            List<int> result = sdmLib.GetMoviesReviewedByNWithRateDecreasingDateIncreasing(10);
+            var result = sdmLib.GetMoviesReviewedByNWithRateDecreasingDateIncreasing(10);
 
             sw.Stop();
 
             Assert.IsTrue(sw.ElapsedMilliseconds < 4000);
         }
-
     }
 }

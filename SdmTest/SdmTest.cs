@@ -86,7 +86,7 @@ namespace SdmTest
         public void GetAverageRatingForReviewerN_validAverage()
         {
             double averageRatingForReviewer1 = 4;
-            double averageRatingForReviewer5 = 3.125;
+            double averageRatingForReviewer5 = 3.25;
             double averageRatingForReviewer10 = 0;
 
             Assert.AreEqual(averageRatingForReviewer1, sdmLib.GetAverageRatingForReviewerN(1));
@@ -155,7 +155,7 @@ namespace SdmTest
         public void IdsForMoviesWithTopRates()
         {
             List<int> result = sdmLib.IdsForMoviesWithTopRates();
-            Assert.IsTrue(result.Count == 3);
+            Assert.IsTrue(result.Count == 4);
         }
 
         //8
