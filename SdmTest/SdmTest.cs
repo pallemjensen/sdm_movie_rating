@@ -11,8 +11,8 @@ namespace SdmTest
     {
         //For use in integration tests
         // FilePath must be changed for different file locations!!!
-        private static readonly string jsonFilePath = "C:\\Users\\Bruger\\ThirdSemester\\sdm_movie_rating\\ratings.json";
-        private StreamReader r = new StreamReader(jsonFilePath);
+        //private static readonly string jsonFilePath = "C:\\Users\\Bruger\\ThirdSemester\\sdm_movie_rating\\ratings.json";
+        //private StreamReader r = new StreamReader(jsonFilePath);
 
         //For use in unit tests
         private static string testString = "[" +

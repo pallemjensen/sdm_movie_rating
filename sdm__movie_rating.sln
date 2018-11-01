@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sdm_movie_rating", "sdm_mov
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SdmTest", "SdmTest\SdmTest.csproj", "{00CCE5A5-7E20-413D-8E32-A93E1853992A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SdmPerformanceTest", "SdmPerformanceTest\SdmPerformanceTest.csproj", "{ECCC0AFC-91CE-43ED-878B-E348EFD91E24}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{00CCE5A5-7E20-413D-8E32-A93E1853992A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{00CCE5A5-7E20-413D-8E32-A93E1853992A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{00CCE5A5-7E20-413D-8E32-A93E1853992A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ECCC0AFC-91CE-43ED-878B-E348EFD91E24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECCC0AFC-91CE-43ED-878B-E348EFD91E24}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECCC0AFC-91CE-43ED-878B-E348EFD91E24}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECCC0AFC-91CE-43ED-878B-E348EFD91E24}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
