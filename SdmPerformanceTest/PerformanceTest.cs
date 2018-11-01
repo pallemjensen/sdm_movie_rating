@@ -146,7 +146,21 @@ namespace SdmPerformanceTest
             Assert.IsTrue(sw.ElapsedMilliseconds < 4000);
         }
 
+        //10
+        [TestMethod]
+        public void GetMoviesReviewedByNWithRateDecreasingDateIncreasing()
+        {
+            Stopwatch sw = new Stopwatch();
 
+
+            sw.Start();
+
+            List<int> result = sdmLib.GetMoviesReviewedByNWithRateDecreasingDateIncreasing(10);
+
+            sw.Stop();
+
+            Assert.IsTrue(sw.ElapsedMilliseconds < 4000);
+        }
 
     }
 }

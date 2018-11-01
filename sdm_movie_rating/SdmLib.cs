@@ -168,7 +168,8 @@ namespace sdm_movie_rating
         //10
         public List<int> GetMoviesReviewedByNWithRateDecreasingDateIncreasing(int n)
         {
-            throw new NotImplementedException();
+            List<MovieRating> reviewersRatings = ReviewerMovieRatings[n];
+            return reviewersRatings.OrderByDescending(r => r.Grade).ThenBy(r => r.Date).Select(r => r.Movie).ToList();
         }
 
         //11

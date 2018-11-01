@@ -43,7 +43,7 @@ namespace SdmTest
                                            "{ Reviewer:5, Movie:22, Grade:4, Date:'2005-07-18'}," +
                                            "{ Reviewer:5, Movie:33, Grade:4, Date:'2004-04-06'}," +
                                            "{ Reviewer:5, Movie:44, Grade:3, Date:'2005-07-19'}," +
-                                           "{ Reviewer:5, Movie:55, Grade:4, Date:'2005-07-19'}," +
+                                           "{ Reviewer:5, Movie:55, Grade:5, Date:'2005-07-19'}," +
                                            "{ Reviewer:5, Movie:66, Grade:1, Date:'2004-06-16'}," +
                                            "{ Reviewer:5, Movie:77, Grade:2, Date:'2004-11-13'}," +
                                            "{ Reviewer:5, Movie:88, Grade:3, Date:'2004-11-13'}," +
@@ -179,7 +179,13 @@ namespace SdmTest
         [TestMethod]
         public void GetMoviesReviewedByNWithRateDecreasingDateIncreasing()
         {
-            
+            int reviewer = 5;
+            List<int> result = sdmLib.GetMoviesReviewedByNWithRateDecreasingDateIncreasing(5);
+            Assert.AreEqual(8, result.Count);
+            foreach (var v in result)
+            {
+                Console.WriteLine("Movie id: "+ v);
+            }
         }
 
         //11
