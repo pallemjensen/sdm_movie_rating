@@ -162,7 +162,7 @@ namespace sdm_movie_rating
         //9
         public List<int> GetTopMovieIdsFromNNumberOfMovies(int n)
         {
-            throw new NotImplementedException();
+            return MovieGrades.OrderByDescending(v => v.Value.Average()).Take(n).Select(v => v.Key).ToList();
         }
 
         //10

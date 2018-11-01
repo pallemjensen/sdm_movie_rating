@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -169,7 +170,9 @@ namespace SdmTest
         [TestMethod]
         public void GetTopMovieIdsFromNNumberOfMovies()
         {
-            
+            int numRet = 3;
+            List<int> result = sdmLib.GetTopMovieIdsFromNNumberOfMovies(numRet);
+            Assert.AreEqual(numRet, result.Count);
         }
 
         //10
