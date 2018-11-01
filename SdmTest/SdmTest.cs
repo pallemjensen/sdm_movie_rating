@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -153,7 +154,8 @@ namespace SdmTest
         [TestMethod]
         public void IdsForMoviesWithTopRates()
         {
-            
+            List<int> result = sdmLib.IdsForMoviesWithTopRates();
+            Assert.IsTrue(result.Count == 3);
         }
 
         //8

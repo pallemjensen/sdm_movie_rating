@@ -114,6 +114,20 @@ namespace SdmPerformanceTest
             Assert.IsTrue(sw.ElapsedMilliseconds < 4000);
         }
 
+        //7
+        [TestMethod]
+        public void IdsForMoviesWithTopRates()
+        {
+            Stopwatch sw = new Stopwatch();
+
+
+            sw.Start();
+            double result = sdmLib.IdsForMoviesWithTopRates()
+
+            sw.Stop();
+
+            Assert.IsTrue(sw.ElapsedMilliseconds < 4000);
+        }
        
 
 
