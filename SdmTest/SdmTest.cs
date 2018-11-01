@@ -64,7 +64,7 @@ namespace SdmTest
             int numEntries = 30;//4+5+6+7+8=30
 
             //number of entries in test data = 30
-            Assert.AreEqual(numEntries, sdmLib.List.Count());
+            Assert.AreEqual(numEntries, sdmLib.ListOfMovieRatings.Count());
 
         }
 

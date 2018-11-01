@@ -9,7 +9,7 @@ namespace sdm_movie_rating
 {
     public class SdmLib : ISdmLib
     {
-        public IEnumerable<MovieRating> List;
+        public IEnumerable<MovieRating> ListOfMovieRatings;
         //Key=Reviewer  Value=MovieRating as List<MovieRating>
         public Dictionary<int, List<MovieRating>> ReviewerMovieRatings = new Dictionary<int, List<MovieRating>>();
         //Key=Reviewer  Value=Grade as List<int>
@@ -28,13 +28,13 @@ namespace sdm_movie_rating
             using (reader)
             {
                string json = reader.ReadToEnd();
-               List = JsonConvert.DeserializeObject<List<MovieRating>>(json);
+               ListOfMovieRatings = JsonConvert.DeserializeObject<List<MovieRating>>(json);
             }
         }
 
         private void fillDictionaries()
         {
-            foreach (MovieRating mr in List)
+            foreach (MovieRating mr in ListOfMovieRatings)
             {
                 int reviewer = mr.Reviewer;
                 //Fill ReviewerMovieRatings<> Dictionary
@@ -145,7 +145,11 @@ namespace sdm_movie_rating
         //7
         public List<int> IdsForMoviesWithTopRates()
         {
-            throw new NotImplementedException();
+            // Filtrerer fra listen, hvilke der er lig med 5. Hvad er det maximale af de counts. Så ved vi hvem der har flest 5'ere.
+            int maxValue = ListOfMovieRatings.Where(r => r.Grade == 5).GroupBy(r => r.Movie).Max(r => r.Count());
+
+            return ListOfMovieRatings.Where(r => r.Grade == 5).GroupBy(r => r.Movie).Where(r => r.Count() == maxValue).Select(r => r.Key).ToList();
+
         }
 
         //8
@@ -171,6 +175,7 @@ namespace sdm_movie_rating
         {
             throw new NotImplementedException();
         }
-        
+
+       
     }
 }
