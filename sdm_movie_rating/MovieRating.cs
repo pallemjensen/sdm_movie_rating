@@ -2,6 +2,8 @@
 
 namespace sdm_movie_rating
 {
+
+    //This is made to test our first pull request
     public class MovieRating
     {
         public int Reviewer { get; set; }
